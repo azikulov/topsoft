@@ -1,0 +1,126 @@
+.carousel {
+  @include container();
+
+  &__card {
+    width: 100%;
+    height: 25rem;
+
+    @include tablet() {
+      height: 31.25rem;
+    }
+
+    img {
+      width: inherit;
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 0.625rem;
+
+      user-select: none;
+
+      @include tablet() {
+        object-fit: contain;
+      }
+    }
+
+    &-empty {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+    }
+
+    &-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+
+      width: 100%;
+    }
+
+    &-title {
+      color: #fff;
+      text-align: center;
+
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 100%; /* 56px */
+      letter-spacing: -1.12px;
+
+      @include tablet() {
+        font-size: 2.25rem;
+        letter-spacing: -0.7px;
+      }
+    }
+
+    &-price {
+      margin-top: 0.75rem;
+
+      text-align: center;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 110.1%; /* 22.02px */
+      letter-spacing: -0.4px;
+
+      @include tablet() {
+        font-size: 1rem;
+        letter-spacing: -0.32px;
+      }
+    }
+  }
+}
+
+.carousel-left-arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+
+  position: absolute;
+  left: 2.25rem;
+  right: auto;
+
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+}
+
+.carousel-right-arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+
+  position: absolute;
+  left: auto;
+  right: 2.25rem;
+
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+}
+
+.multi-carousel {
+  padding-bottom: 1.5rem;
+}
+
+.carousel-dots {
+  display: flex;
+  column-gap: 0.5rem;
+
+  &__item {
+    width: 0.5rem;
+    height: 0.5rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+
+    background: #e3e4ff;
+
+    &.active {
+      background: #8282dd;
+    }
+  }
+}
