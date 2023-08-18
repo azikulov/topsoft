@@ -1,3 +1,4 @@
+import { getImagePath } from '@/utils/getImagePath';
 import styles from './Help.module.scss';
 
 export function Help() {
@@ -18,7 +19,7 @@ export function Help() {
         </div>
 
         <div className={styles['help__image']}>
-          <img src={'@/assets/images/about-company/composition-1.png'} alt='' />
+          <img src={getImagePath('/src/assets/images/about-company/composition-1.png')} alt='' />
         </div>
       </div>
     </div>

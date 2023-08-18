@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 import styles from './Layout.module.scss';
+import { localProducts } from '@/data/localProducts';
 import { useProductsStore } from '@/store';
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -15,8 +15,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    if (!products.length)
-      axios.get('/api/products').then((response) => saveProducts(response.data));
+    if (!products.length) saveProducts(localProducts);
+    // axios.get('/api/products').then((response) => saveProducts(response.data));
   }, [saveProducts, products.length]);
 
   return (

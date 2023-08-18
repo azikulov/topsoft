@@ -1,0 +1,24 @@
+.loading {
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: 100;
+
+  &__title {
+    color: #254eb8;
+    font-size: 12.5rem;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -5px;
+
+    @include tablet() {
+      font-size: 5rem;
+    }
+  }
+}
