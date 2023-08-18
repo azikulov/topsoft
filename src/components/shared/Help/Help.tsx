@@ -19,7 +19,7 @@ export function Help() {
         </div>
 
         <div className={styles['help__image']}>
-          <img src={getImagePath('/src/assets/images/about-company/composition-1.png')} alt='' />
+          <img src={getImagePath('/assets/images/about-company/composition-1.png')} alt='' />
         </div>
       </div>
     </div>

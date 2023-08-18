@@ -6,7 +6,7 @@ export const instructions: Instruction[] = [
   {
     id: 1,
     title: 'Инструкция по активации Windows 10 Pro и Windows 10 Home',
-    image: getImagePath('/src/assets/images/instructions/1-387х250.png'),
+    image: getImagePath('/assets/images/instructions/1-387х250.png'),
     content: (
       <div>
         <p>
@@ -16,18 +16,18 @@ export const instructions: Instruction[] = [
         <ul>
           <li>
             <p>Откройте системный инструмент «Параметры»: </p>
-            <img src={getImagePath('/src/assets/images/instructions/1/1.jpeg')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/1/1.jpeg')} alt='' />
           </li>
           <li>
             <p>Нажмите на «Обновление и безопасность»: </p>
-            <img src={getImagePath('/src/assets/images/instructions/1/2.jpeg')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/1/2.jpeg')} alt='' />
           </li>
           <li>
             <p>
               В новом окне выберите пункт «Активация», нажмите «изменить ключ продукта» и введите
               купленный ключ активации
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/1/3.jpeg')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/1/3.jpeg')} alt='' />
           </li>
           <li>
             <p>Поздравляем, система активирована!</p>
@@ -39,7 +39,7 @@ export const instructions: Instruction[] = [
   {
     id: 2,
     title: 'Инструкция по активации Windows 11 Pro и Windows 11 Home',
-    image: getImagePath('/src/assets/images/instructions/2-387х250.png'),
+    image: getImagePath('/assets/images/instructions/2-387х250.png'),
     content: (
       <div>
         <p>
@@ -49,15 +49,15 @@ export const instructions: Instruction[] = [
         <ul>
           <li>
             <p>Кликнуть на значок Windows левой кнопкой мыши. </p>
-            <img src={getImagePath('/src/assets/images/instructions/2/1.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/2/1.png')} alt='' />
           </li>
           <li>
             <p>Выбрать вкладку «Параметры» (Шестеренка).</p>
-            <img src={getImagePath('/src/assets/images/instructions/2/2.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/2/2.png')} alt='' />
           </li>
           <li>
             <p>Выбрать раздел «Система» </p>
-            <img src={getImagePath('/src/assets/images/instructions/2/3.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/2/3.png')} alt='' />
           </li>
           <li>
             <p>
@@ -65,7 +65,7 @@ export const instructions: Instruction[] = [
               «Не активирована» означает, что нужно внести ключ продукта. Для этого в том же меню
               кликните на кнопку «Изменить» в пункте «Изменить ключ продукта».{' '}
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/2/4.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/2/4.png')} alt='' />
           </li>
           <li>
             <p>Введите ключ активации Windows 11 и нажмите кнопку «Активировать» </p>
@@ -80,7 +80,7 @@ export const instructions: Instruction[] = [
   {
     id: 3,
     title: 'Инструкция по активации office без привязки к учетной записи и с привязкой',
-    image: getImagePath('/src/assets/images/instructions/3-387х250.png'),
+    image: getImagePath('/assets/images/instructions/3-387х250.png'),
     content: (
       <div>
         <p>Как активировать Office без привязки к учетной записи </p>
@@ -102,27 +102,27 @@ export const instructions: Instruction[] = [
           </li>
           <li>
             <p>Перейдите в меню Файл - Учетная запись </p>
-            <img src={getImagePath('/src/assets/images/instructions/3/1.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/3/1.png')} alt='' />
           </li>
           <li>
             <p>
               Если продукт ранее не был активирован нажмите Изменить ключ, если ранее уже был
               активирован - Сменить лицензию
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/3/2.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/3/2.png')} alt='' />
           </li>
           <li>
             <p>
               Далее введите ключ продукта (Если у Вас нет ключа, приобрести его можно в нашем
               каталоге)
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/3/3.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/3/3.png')} alt='' />
           </li>
           <li>
             <p>
               После успешной активации у Вас отобразится следующее сообщение - Продукт активирован{' '}
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/3/4.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/3/4.png')} alt='' />
           </li>
           <li>
             <p>Поздравляем! Программа активирована </p>
@@ -134,21 +134,21 @@ export const instructions: Instruction[] = [
   {
     id: 4,
     title: 'Как активировать Office с привязкой к учетной записи ',
-    image: getImagePath('/src/assets/images/instructions/4-387х250.png'),
+    image: getImagePath('/assets/images/instructions/4-387х250.png'),
     content: (
       <div>
         <ul>
           <li>
             <p>Зайдите на сайт setup.office.com под своей учетной записью Microsoft </p>
-            <img src={getImagePath('/src/assets/images/instructions/4/1.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/4/1.png')} alt='' />
           </li>
           <li>
             <p>Введите купленный ключ активации </p>
-            <img src={getImagePath('/src/assets/images/instructions/4/2.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/4/2.png')} alt='' />
           </li>
           <li>
             <p>Удалите все имеющиеся версии Office с компьютера </p>
-            <img src={getImagePath('/src/assets/images/instructions/4/3.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/4/3.png')} alt='' />
           </li>
           <li>
             <p>
@@ -167,11 +167,11 @@ export const instructions: Instruction[] = [
           <li>
             <p>Запустите любую программу, которая входит в пакет Офиса. </p>
             <p>Перейдите в меню Файл - Учетная запись </p>
-            <img src={getImagePath('/src/assets/images/instructions/4/4.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/4/4.png')} alt='' />
           </li>
           <li>
             <p>Далее войдите в свою учетную запись </p>
-            <img src={getImagePath('/src/assets/images/instructions/4/5.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/4/5.png')} alt='' />
           </li>
           <li>
             <p>Пакет программ активирован! </p>
@@ -183,7 +183,7 @@ export const instructions: Instruction[] = [
   {
     id: 5,
     title: 'Инструкция по активации Windows 7',
-    image: getImagePath('/src/assets/images/instructions/5-387х250.png'),
+    image: getImagePath('/assets/images/instructions/5-387х250.png'),
     content: (
       <div>
         <ul>
@@ -193,11 +193,11 @@ export const instructions: Instruction[] = [
               далее в появившемся меню в самом низу находим пункт «Свойства», нажимаем на него левой
               кнопкой мыши и видим вот такое окно:
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/5/1.jpeg')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/5/1.jpeg')} alt='' />
           </li>
           <li>
             <p>Нажимаем пункт «Изменить ключ продукта» в самом низу </p>
-            {/* <img src={getImagePath('/src/assets/images/instructions/5/2.jpeg')} alt='' /> */}
+            {/* <img src={getImagePath('/assets/images/instructions/5/2.jpeg')} alt='' /> */}
           </li>
           <li>
             <p>Вводим купленный ключ продукта и нажимаем «Далее» </p>
@@ -212,7 +212,7 @@ export const instructions: Instruction[] = [
   {
     id: 6,
     title: 'Инструкция по активации Office 365 Pro Plus',
-    image: getImagePath('/src/assets/images/instructions/6-387х250.png'),
+    image: getImagePath('/assets/images/instructions/6-387х250.png'),
     content: (
       <div>
         <ul>
@@ -223,14 +223,14 @@ export const instructions: Instruction[] = [
               <br />
               Сначала нужно войти на сайт http://office.com/ используя полученный логин и пароль.
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/6/1.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/6/1.png')} alt='' />
           </li>
           <li>
             <p>
               После входа в аккаунт, система предложит сменить пароль, измените его и обязательно
               запишите, т.к. восстановление будет невозможно.
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/6/2.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/6/2.png')} alt='' />
           </li>
           <li>
             <p>
@@ -259,7 +259,7 @@ export const instructions: Instruction[] = [
               Если в данном меню отображается ВАШ основной аккаунт, из него необходимо выйти, и
               войти под нашим.
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/6/3.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/6/3.png')} alt='' />
           </li>
           <li>
             <p>Продукт активирован! </p>
@@ -271,7 +271,7 @@ export const instructions: Instruction[] = [
   {
     id: 7,
     title: 'Инструкция по активации Office 365 ',
-    image: getImagePath('/src/assets/images/instructions/7-387х250.png'),
+    image: getImagePath('/assets/images/instructions/7-387х250.png'),
     content: (
       <div>
         <ul>
@@ -289,7 +289,7 @@ export const instructions: Instruction[] = [
               <br />
               Сначала нужно войти на сайт http://office.com/ используя полученный логин и пароль.
             </p>
-            <img src={getImagePath('/src/assets/images/instructions/7/1.png')} alt='' />
+            <img src={getImagePath('/assets/images/instructions/7/1.png')} alt='' />
           </li>
           <li>
             <p>
