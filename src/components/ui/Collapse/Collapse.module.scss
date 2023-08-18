@@ -1,15 +1,3 @@
-@mixin container {
-  width: min(100%, calc(1200px + 2.5rem));
-  margin-inline: auto;
-  padding-inline: 1.25rem;
-}
-
-@mixin tablet {
-  @media screen and (max-width: 968px) {
-    @content;
-  }
-}
-
 .collapse {
   background: #fff;
   margin-top: 2rem;
