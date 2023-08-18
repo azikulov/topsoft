@@ -1,6 +1,5 @@
 import { renderToString } from 'react-dom/server';
 import type { Product } from '@/types';
-import { getImagePath } from '@/utils/getImagePath';
 
 export const localProducts: Product[] = [
   {
@@ -8,7 +7,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 365 Professional Plus',
     category: 'Office для Windows, Office для MacOS',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+    image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
     description: renderToString(
       <>
         Вы получаете новую готовую учетную запись с постоянно действующей подпиской для
@@ -71,25 +70,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 5,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Home.webp',
         title: 'Windows 11 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -103,7 +102,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 365 Персональный',
     category: 'Office для Windows, Office для MacOS',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp'),
+    image: '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 365 Персональный. Ключ в
@@ -196,25 +195,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 16,
-        image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+        image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
         title: 'Office 365 Pro Plus',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке',
       },
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -225,7 +224,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 365 Для семьи ',
     category: 'Office для Windows, Office для MacOS',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Office-365-Для-семьи-(Windows).webp'),
+    image: '/assets/images/products/Обложка-Office-365-Для-семьи-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 365 Для семьи. Ключ в
@@ -321,25 +320,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 16,
-        image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+        image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
         title: 'Office 365 Pro Plus',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке',
       },
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -350,7 +349,7 @@ export const localProducts: Product[] = [
     title: 'Windows 11 Pro (Профессиональная)',
     category: 'Microsoft Windows',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+    image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
     description:
       'Вы приобретаете лицензионный ключ активации для Microsoft Windows 11 Pro (Профессиональная). Ключ в автоматическом режиме высылается на указанную почту, сразу после оплаты. Он позволяет активировать ОС и использовать лицензионное программное обеспечение без каких-либо ограничений, в том числе скачивать и устанавливать обновления, регулярно выпускаемые компанией Microsoft. <br/> <p style="color:red;">Внимание!</p> <ul><li>Ключ активации можно использовать на одном устройстве </li><li>Ключ активирует исключительно данную версию системы и не позволяет обновить другие версии системы </li><li>Ключ активирует исключительно оригинальный дистрибутив операционной системы, загруженный с нашего сервера или с официального сайта Microsoft </li></ul> <p>Комплект поставки: </p> <ul><li>Ключ активации в формате XXXXX-XXXXX-XXXXX-XXXXX-XXXXX </li><li>Ссылка на загрузку официального дистрибутива </li><li>Инструкция по активации</li></ul>',
     questionAnswer: [
@@ -407,31 +406,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 15,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2021 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 12,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2019 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 16,
-        image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+        image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
         title: 'Microsoft Office 365 Professional Plus ',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке ',
       },
       {
         id: 17,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp',
         title: 'Microsoft Office 365 Personal (Персональный)',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке ',
       },
@@ -442,7 +435,7 @@ export const localProducts: Product[] = [
     title: 'Windows 11 Home (Домашняя) ',
     category: 'Microsoft Windows ',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+    image: '/assets/images/products/Обложка-Windows-11-Home.webp',
     description:
       'Вы приобретаете лицензионный ключ активации для Microsoft Windows 11 Home (Домашняя). Ключ в автоматическом режиме высылается на указанную почту, сразу после оплаты. Он позволяет активировать ОС и использовать лицензионное программное обеспечение без каких-либо ограничений, в том числе скачивать и устанавливать обновления, регулярно выпускаемые компанией Microsoft. <br/> <p style="color:red;">Внимание!</p> <ul><li>Ключ активации можно использовать на одном устройстве </li><li>Ключ активирует исключительно данную версию системы и не позволяет обновить другие версии системы </li><li>Ключ активирует исключительно оригинальный дистрибутив операционной системы, загруженный с нашего сервера или с официального сайта Microsoft </li></ul> <p>Комплект поставки: </p> <ul><li>Ключ активации в формате XXXXX-XXXXX-XXXXX-XXXXX-XXXXX </li><li>Ссылка на загрузку официального дистрибутива </li><li>Инструкция по активации</li></ul>',
     questionAnswer: [
@@ -499,31 +492,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 15,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2021 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 12,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2019 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 16,
-        image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+        image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
         title: 'Microsoft Office 365 Professional Plus ',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке ',
       },
       {
         id: 17,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp',
         title: 'Microsoft Office 365 Personal (Персональный)',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке ',
       },
@@ -534,7 +521,7 @@ export const localProducts: Product[] = [
     title: 'Windows 10 Pro (Профессиональная)',
     category: 'Microsoft Windows ',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+    image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
     description:
       'Вы приобретаете лицензионный ключ активации для Microsoft Windows 10 Pro (Профессиональная). Ключ в автоматическом режиме высылается на указанную почту, сразу после оплаты. Он позволяет активировать ОС и использовать лицензионное программное обеспечение без каких-либо ограничений, в том числе скачивать и устанавливать обновления, регулярно выпускаемые компанией Microsoft. <br/> <p style="color:red;">Внимание!</p> <ul><li>Ключ активации можно использовать на одном устройстве </li><li>Ключ активирует исключительно данную версию системы и не позволяет обновить другие версии системы </li><li>Ключ активирует исключительно оригинальный дистрибутив операционной системы, загруженный с нашего сервера или с официального сайта Microsoft </li></ul> <p>Комплект поставки: </p> <ul><li>Ключ активации в формате XXXXX-XXXXX-XXXXX-XXXXX-XXXXX </li><li>Ссылка на загрузку официального дистрибутива </li><li>Инструкция по активации</li></ul>',
     questionAnswer: [
@@ -591,31 +578,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 15,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2021 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 12,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2019 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 9,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2016 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 16,
-        image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+        image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
         title: 'Microsoft Office 365 Professional Plus ',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке ',
       },
@@ -626,7 +607,7 @@ export const localProducts: Product[] = [
     title: 'Windows 10 Home (Домашняя)',
     category: 'Microsoft Windows',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+    image: '/assets/images/products/Обложка-Windows-10-Home.webp',
     description:
       'Вы приобретаете лицензионный ключ активации для Microsoft Windows 10 Home (Домашняя). Ключ в автоматическом режиме высылается на указанную почту, сразу после оплаты. Он позволяет активировать ОС и использовать лицензионное программное обеспечение без каких-либо ограничений, в том числе скачивать и устанавливать обновления, регулярно выпускаемые компанией Microsoft.  <br/> <p style="color:red;">Внимание!</p> <ul><li>Ключ активации можно использовать на одном устройстве </li><li>Ключ активирует исключительно данную версию системы и не позволяет обновить другие версии системы </li><li>Ключ активирует исключительно оригинальный дистрибутив операционной системы, загруженный с нашего сервера или с официального сайта Microsoft </li></ul> <p>Комплект поставки: </p> <ul><li>Ключ активации в формате XXXXX-XXXXX-XXXXX-XXXXX-XXXXX </li><li>Ссылка на загрузку официального дистрибутива </li><li>Инструкция по активации</li></ul>',
     questionAnswer: [
@@ -683,31 +664,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 15,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2021 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 12,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2019 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 9,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2016 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 16,
-        image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+        image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
         title: 'Microsoft Office 365 Professional Plus ',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке ',
       },
@@ -718,7 +693,7 @@ export const localProducts: Product[] = [
     title: 'Windows 7 Pro (Профессиональная)',
     category: 'Microsoft Windows',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Windows-7-Pro.webp'),
+    image: '/assets/images/products/Обложка-Windows-7-Pro.webp',
     description:
       'Вы приобретаете лицензионный ключ активации для Microsoft Windows 7 Pro (Профессиональная). Ключ в автоматическом режиме высылается на указанную почту, сразу после оплаты. Он позволяет активировать ОС и использовать лицензионное программное обеспечение без каких-либо ограничений, в том числе скачивать и устанавливать обновления, регулярно выпускаемые компанией Microsoft. <br/> <p style="color:red;">Внимание!</p> <ul><li>Ключ активации можно использовать на одном устройстве </li><li>Ключ активирует исключительно данную версию системы и не позволяет обновить другие версии системы </li><li>Ключ активирует исключительно оригинальный дистрибутив операционной системы, загруженный с нашего сервера или с официального сайта Microsoft </li></ul> <p>Комплект поставки: </p> <ul><li>Ключ активации в формате XXXXX-XXXXX-XXXXX-XXXXX-XXXXX </li><li>Ссылка на загрузку официального дистрибутива </li><li>Инструкция по активации</li></ul>',
     questionAnswer: [
@@ -775,31 +750,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 9,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2016 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 8,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2016-Для-дома-и-учёбы-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2016-Для-дома-и-учёбы-(Windows).webp',
         title: 'Microsoft Office 2016 Для дома и учебы',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 10,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2016-Для-дома-и-бизнеса-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2016-Для-дома-и-бизнеса-(Windows).webp',
         title: 'Microsoft Office 2016 Для дома и бизнеса',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -810,7 +779,7 @@ export const localProducts: Product[] = [
     title: 'Windows 7 Ultimate (Максимальная)',
     category: 'Microsoft Windows',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Windows-7-Максимальная.webp'),
+    image: '/assets/images/products/Обложка-Windows-7-Максимальная.webp',
     description:
       'Вы приобретаете лицензионный ключ активации для Microsoft Windows 7 Utlimate (Максимальная). Ключ в автоматическом режиме высылается на указанную почту, сразу после оплаты. Он позволяет активировать ОС и использовать лицензионное программное обеспечение без каких-либо ограничений, в том числе скачивать и устанавливать обновления, регулярно выпускаемые компанией Microsoft. <br/><br/> <p style="color: red;">Внимание!</p> <ul><li>Ключ активации можно использовать на одном устройстве</li><li>Ключ активирует исключительно данную версию системы и не позволяет обновить другие версии системы</li><li>Ключ активирует исключительно оригинальный дистрибутив операционной системы, загруженный с нашего сервера или с официального сайта Microsoft</li></ul> <p>Комплект поставки:</p><ul><li>Ключ активации в формате XXXXX-XXXXX-XXXXX-XXXXX-XXXXX </li><li>Ссылка на загрузку официального дистрибутива </li><li>Инструкция по активации</li></ul>',
     questionAnswer: [
@@ -867,31 +836,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 9,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2016 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 8,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2016-Для-дома-и-учёбы-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2016-Для-дома-и-учёбы-(Windows).webp',
         title: 'Microsoft Office 2016 Для дома и учебы',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 10,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2016-Для-дома-и-бизнеса-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2016-Для-дома-и-бизнеса-(Windows).webp',
         title: 'Microsoft Office 2016 Для дома и бизнеса',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -902,7 +865,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2021 Для дома и бизнеса',
     category: 'Office для MacOS',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Office-2021-(MacOS).webp'),
+    image: '/assets/images/products/Обложка-Office-2021-(MacOS).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2021 Для дома и бизнеса для
@@ -922,7 +885,7 @@ export const localProducts: Product[] = [
           <li>
             Программа устанавливается на MacOS версии не ниже 11 (Big Sur, Monterey, Ventura)
             <p>Состав пакета Microsoft Office 2021 Для дома и бизнеса для MacOS: </p>
-            <img src={getImagePath('/assets/icons/sostav.svg')} alt='' />
+            <img src={'/assets/icons/sostav.svg'} alt='' />
           </li>
         </ul>
         <br />
@@ -988,27 +951,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 16,
-        image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+        image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
         title: 'Office 365 Pro Plus',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке',
       },
       {
         id: 17,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp',
         title: 'Office 365 Персональный',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -1019,7 +980,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2019 Для дома и бизнеса',
     category: 'Office для MacOS',
     supportVersion: false,
-    image: getImagePath('/assets/images/products/Обложка-Office-2019-(MacOS).webp'),
+    image: '/assets/images/products/Обложка-Office-2019-(MacOS).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2019 Для дома и бизнеса для
@@ -1040,7 +1001,7 @@ export const localProducts: Product[] = [
           <li>
             <p>Программа устанавливается на MacOS версии не ниже 11 (Big Sur, Monterey, Ventura)</p>
             <p>Состав пакета Microsoft Office 2019 Для дома и бизнеса для MacOS: </p>
-            <img src={getImagePath('/assets/icons/sostav.svg')} alt='' />
+            <img src={'/assets/icons/sostav.svg'} alt='' />
           </li>
         </ul>
         <br />
@@ -1106,27 +1067,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 16,
-        image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+        image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
         title: 'Office 365 Pro Plus',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке',
       },
       {
         id: 17,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp',
         title: 'Office 365 Персональный',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -1137,9 +1096,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2021 Professional Plus',
     category: 'Office для Windows',
     supportVersion: true,
-    image: getImagePath(
-      '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp'
-    ),
+    image: '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2021 Professional Plus.
@@ -1158,11 +1115,7 @@ export const localProducts: Product[] = [
         </ul>
         <br />
         <p>Состав пакета Microsoft Office 2021 Professional Plus: </p>
-        <img
-          style={{ maxWidth: '27.5rem' }}
-          src={getImagePath('/assets/icons/sostav-2.svg')}
-          alt=''
-        />
+        <img style={{ maxWidth: '27.5rem' }} src={'/assets/icons/sostav-2.svg'} alt='' />
         <br />
         <p>Комплект поставки:</p>
         <ul>
@@ -1231,25 +1184,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 5,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Home.webp',
         title: 'Windows 11 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -1260,9 +1213,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2021 Для дома и учебы',
     category: 'Office для Windows',
     supportVersion: false,
-    image: getImagePath(
-      '/assets/images/products/Обложка-Office-2021-Для-дома-и-учёбы-(Windows).webp'
-    ),
+    image: '/assets/images/products/Обложка-Office-2021-Для-дома-и-учёбы-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2021 Для дома и учебы. Ключ
@@ -1282,11 +1233,7 @@ export const localProducts: Product[] = [
         </ul>
         <br />
         <p>Состав пакета Microsoft Office 2021 для Дома и Учёбы: </p>
-        <img
-          style={{ maxWidth: '27.5rem' }}
-          src={getImagePath('/assets/icons/sostav-1.svg')}
-          alt=''
-        />
+        <img style={{ maxWidth: '27.5rem' }} src={'/assets/icons/sostav-1.svg'} alt='' />
         <br />
         <p>Комплект поставки:</p>
         <ul>
@@ -1350,25 +1297,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 5,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Home.webp',
         title: 'Windows 11 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -1379,9 +1326,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2021 Для дома и бизнеса',
     category: 'Office для Windows',
     supportVersion: false,
-    image: getImagePath(
-      '/assets/images/products/Обложка-Office-2021-Для-дома-и-бизнеса-(Windows).webp'
-    ),
+    image: '/assets/images/products/Обложка-Office-2021-Для-дома-и-бизнеса-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2021 Для дома и бизнеса.
@@ -1402,11 +1347,7 @@ export const localProducts: Product[] = [
         </ul>
         <br />
         <p>Состав пакета Microsoft Office 2021 Для дома и бизнеса Windows:</p>
-        <img
-          style={{ maxWidth: '27.5rem' }}
-          src={getImagePath('/assets/icons/sostav-1.svg')}
-          alt=''
-        />
+        <img style={{ maxWidth: '27.5rem' }} src={'/assets/icons/sostav-1.svg'} alt='' />
         <br />
         <p>Комплект поставки:</p>
         <ul>
@@ -1470,25 +1411,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 5,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Home.webp',
         title: 'Windows 11 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -1499,9 +1440,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2019 Professional Plus',
     category: 'Office для Windows',
     supportVersion: true,
-    image: getImagePath(
-      '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp'
-    ),
+    image: '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2016 Professional Plus.
@@ -1521,11 +1460,7 @@ export const localProducts: Product[] = [
         </ul>
         <br />
         <p>Состав пакета Microsoft Office 2019 Professional Plus: </p>
-        <img
-          style={{ maxWidth: '27.5rem' }}
-          src={getImagePath('/assets/icons/sostav-2.svg')}
-          alt=''
-        />
+        <img style={{ maxWidth: '27.5rem' }} src={'/assets/icons/sostav-2.svg'} alt='' />
         <br />
         <p>Комплект поставки:</p>
         <ul>
@@ -1594,25 +1529,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 5,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Home.webp',
         title: 'Windows 11 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -1623,9 +1558,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2019 Для дома и учебы',
     category: 'Office для Windows',
     supportVersion: false,
-    image: getImagePath(
-      '/assets/images/products/Обложка-Office-2019-Для-дома-и-учёбы-(Windows)-1.webp'
-    ),
+    image: '/assets/images/products/Обложка-Office-2019-Для-дома-и-учёбы-(Windows)-1.webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2019 Для дома и учебы. Ключ
@@ -1646,11 +1579,7 @@ export const localProducts: Product[] = [
         </ul>
         <br />
         <p>Состав пакета Microsoft Office 2019 для Дома и Учёбы: </p>
-        <img
-          style={{ maxWidth: '27.5rem' }}
-          src={getImagePath('/assets/icons/sostav-1.svg')}
-          alt=''
-        />
+        <img style={{ maxWidth: '27.5rem' }} src={'/assets/icons/sostav-1.svg'} alt='' />
         <br />
         <p>Комплект поставки:</p>
         <ul>
@@ -1719,25 +1648,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 5,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Home.webp',
         title: 'Windows 11 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -1748,9 +1677,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2019 Для дома и бизнеса',
     category: 'Office для Windows',
     supportVersion: false,
-    image: getImagePath(
-      '/assets/images/products/Обложка-Office-2019-Для-дома-и-бизнеса-(Windows).webp'
-    ),
+    image: '/assets/images/products/Обложка-Office-2019-Для-дома-и-бизнеса-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2019 Для дома и бизнеса.
@@ -1771,11 +1698,7 @@ export const localProducts: Product[] = [
         </ul>
         <br />
         <p>Состав пакета Microsoft Office 2019 Для дома и бизнеса Windows: </p>
-        <img
-          style={{ maxWidth: '27.5rem' }}
-          src={getImagePath('/assets/icons/sostav.svg')}
-          alt=''
-        />
+        <img style={{ maxWidth: '27.5rem' }} src={'/assets/icons/sostav.svg'} alt='' />
         <br />
         <p>Комплект поставки:</p>
         <ul>
@@ -1844,25 +1767,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 5,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Home.webp',
         title: 'Windows 11 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -1873,9 +1796,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2016 Professional Plus',
     category: 'Office для Windows',
     supportVersion: true,
-    image: getImagePath(
-      '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp'
-    ),
+    image: '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2016 Professional Plus.
@@ -1896,11 +1817,7 @@ export const localProducts: Product[] = [
         </ul>
         <br />
         <p>Состав пакета Microsoft Office 2016 Professional Plus: </p>
-        <img
-          style={{ maxWidth: '27.5rem' }}
-          src={getImagePath('/assets/icons/sostav-2.svg')}
-          alt=''
-        />
+        <img style={{ maxWidth: '27.5rem' }} src={'/assets/icons/sostav-2.svg'} alt='' />
         <br />
         <p>Комплект поставки:</p>
         <ul>
@@ -1969,25 +1886,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 5,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Home.webp',
         title: 'Windows 11 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -1998,9 +1915,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2016 Для дома и учебы',
     category: 'Office для Windows',
     supportVersion: false,
-    image: getImagePath(
-      '/assets/images/products/Обложка-Office-2016-Для-дома-и-учёбы-(Windows).webp'
-    ),
+    image: '/assets/images/products/Обложка-Office-2016-Для-дома-и-учёбы-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2016 Для дома и учебы. Ключ
@@ -2021,11 +1936,7 @@ export const localProducts: Product[] = [
         </ul>
         <br />
         <p>Состав пакета Microsoft Office 2016 Для дома и учебы: </p>
-        <img
-          style={{ maxWidth: '27.5rem' }}
-          src={getImagePath('/assets/icons/sostav-1.svg')}
-          alt=''
-        />
+        <img style={{ maxWidth: '27.5rem' }} src={'/assets/icons/sostav-1.svg'} alt='' />
         <br />
         <p>Комплект поставки:</p>
         <ul>
@@ -2089,25 +2000,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 6,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Pro.webp',
         title: 'Windows 11 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 5,
-        image: getImagePath('/assets/images/products/Обложка-Windows-11-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-11-Home.webp',
         title: 'Windows 11 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 4,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Pro.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Pro.webp',
         title: 'Windows 10 Pro',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
       {
         id: 3,
-        image: getImagePath('/assets/images/products/Обложка-Windows-10-Home.webp'),
+        image: '/assets/images/products/Обложка-Windows-10-Home.webp',
         title: 'Windows 10 Home',
         subtitle: 'Популярная операционная система, впитавшая в себя самое лучшее ',
       },
@@ -2118,9 +2029,7 @@ export const localProducts: Product[] = [
     title: 'Microsoft Office 2016 Standart',
     category: 'Office для Windows',
     supportVersion: false,
-    image: getImagePath(
-      '/assets/images/products/Обложка-Office-2016-Для-дома-и-бизнеса-(Windows).webp'
-    ),
+    image: '/assets/images/products/Обложка-Office-2016-Для-дома-и-бизнеса-(Windows).webp',
     description: renderToString(
       <>
         Вы приобретаете лицензионный ключ активации для Microsoft Office 2016 Standart
@@ -2141,7 +2050,7 @@ export const localProducts: Product[] = [
         </ul>
         <br />
         <p>Состав пакета Microsoft Office 2016 Standard: </p>
-        <img style={{ maxWidth: '34rem' }} src={getImagePath('/assets/icons/sostav.svg')} alt='' />
+        <img style={{ maxWidth: '34rem' }} src={'/assets/icons/sostav.svg'} alt='' />
         <br />
         <p>Комплект поставки:</p>
         <ul>
@@ -2205,31 +2114,25 @@ export const localProducts: Product[] = [
     recommendations: [
       {
         id: 15,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2021 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 12,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp',
         title: 'Microsoft Office 2019 Professional Plus',
         subtitle: 'Офисный пакет приложений для работы с различными типами документов ',
       },
       {
         id: 16,
-        image: getImagePath('/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp'),
+        image: '/assets/images/products/Обложка-Office-365-Pro-Plus-(Windows).webp',
         title: 'Microsoft Office 365 Professional Plus ',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке ',
       },
       {
         id: 17,
-        image: getImagePath(
-          '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp'
-        ),
+        image: '/assets/images/products/Обложка-Office-365-Персональный-(Windows).webp',
         title: 'Microsoft Office 365 Personal (Персональный)',
         subtitle: 'Офисный пакет пакет приложений распространяемый по подписке ',
       },

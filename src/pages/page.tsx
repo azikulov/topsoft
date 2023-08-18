@@ -6,7 +6,6 @@ import { Rates } from '@/components/shared/Rates';
 import { Layout } from '@/components/ui/Layout';
 import { Collapse } from '@/components/ui/Collapse';
 import styles from './page.module.scss';
-import { getImagePath } from '@/utils/getImagePath';
 
 export default function Home() {
   return (
@@ -14,18 +13,12 @@ export default function Home() {
       <Carousel>
         <CarouselCard
           href='/catalog/16'
-          image={[
-            getImagePath('../assets/images/banner-1.png'),
-            getImagePath('../assets/images/mobile-banner-1.png'),
-          ]}
+          image={['../assets/images/banner-1.png', '../assets/images/mobile-banner-1.png']}
         />
 
         <CarouselCard
           href='/catalog/4'
-          image={[
-            getImagePath('../assets/images/banner-2.png'),
-            getImagePath('../assets/images/mobile-banner-2.png'),
-          ]}
+          image={['../assets/images/banner-2.png', '../assets/images/mobile-banner-2.png']}
         />
       </Carousel>
 
@@ -35,7 +28,7 @@ export default function Home() {
         <div className={styles['software-categories__cards']}>
           <div className={styles['software-categories__card']}>
             <div className={styles['software-categories__card-icon']}>
-              <img src={getImagePath('../assets/images/software-categories/Windows.png')} alt='' />
+              <img src={'../assets/images/software-categories/Windows.png'} alt='' />
             </div>
 
             <p className={styles['software-categories__card-title']}>Microsoft Windows</p>
@@ -53,7 +46,7 @@ export default function Home() {
 
           <div className={styles['software-categories__card']}>
             <div className={styles['software-categories__card-icon']}>
-              <img src={getImagePath('../assets/images/software-categories/Office.png')} alt='' />
+              <img src={'../assets/images/software-categories/Office.png'} alt='' />
             </div>
 
             <p className={styles['software-categories__card-title']}>Microsoft Office 365</p>
@@ -71,8 +64,8 @@ export default function Home() {
 
           <div className={styles['software-categories__card']}>
             <div className={styles['software-categories__card-icon']}>
-              <img src={getImagePath('../assets/images/software-categories/Office.png')} alt='' />
-              <img src={getImagePath('../assets/images/software-categories/Windows.png')} alt='' />
+              <img src={'../assets/images/software-categories/Office.png'} alt='' />
+              <img src={'../assets/images/software-categories/Windows.png'} alt='' />
             </div>
 
             <p className={styles['software-categories__card-title']}>Office для Windows</p>
@@ -90,8 +83,8 @@ export default function Home() {
 
           <div className={styles['software-categories__card']}>
             <div className={styles['software-categories__card-icon']}>
-              <img src={getImagePath('../assets/images/software-categories/Office.png')} alt='' />
-              <img src={getImagePath('../assets/images/software-categories/Apple.png')} alt='' />
+              <img src={'../assets/images/software-categories/Office.png'} alt='' />
+              <img src={'../assets/images/software-categories/Apple.png'} alt='' />
             </div>
 
             <p className={styles['software-categories__card-title']}>Office для MacOS</p>
@@ -117,9 +110,9 @@ export default function Home() {
             <div className={styles['products__card-image']}>
               <Link to='/catalog/15'>
                 <img
-                  src={getImagePath(
+                  src={
                     '../assets/images/products/Обложка-Office-2021-Professional-Plus-(Windows).webp'
-                  )}
+                  }
                   alt=''
                 />
               </Link>
@@ -152,10 +145,7 @@ export default function Home() {
           <div className={styles['products__card']}>
             <div className={styles['products__card-image']}>
               <Link to='/catalog/6'>
-                <img
-                  src={getImagePath('../assets/images/products/Обложка-Windows-11-Pro.webp')}
-                  alt=''
-                />
+                <img src={'../assets/images/products/Обложка-Windows-11-Pro.webp'} alt='' />
               </Link>
             </div>
 
@@ -191,10 +181,7 @@ export default function Home() {
         <div className={styles['best-offers__cards']}>
           <Link to='/catalog/5' className={styles['best-offers__card']}>
             <div className={styles['best-offers__card-image']}>
-              <img
-                src={getImagePath('../assets/images/products/Обложка-Windows-11-Home.webp')}
-                alt=''
-              />
+              <img src={'../assets/images/products/Обложка-Windows-11-Home.webp'} alt='' />
             </div>
 
             <h1 className={styles['best-offers__card-title']}>Windows 11 Home</h1>
@@ -209,9 +196,9 @@ export default function Home() {
           <Link to='/catalog/12' className={styles['best-offers__card']}>
             <div className={styles['best-offers__card-image']}>
               <img
-                src={getImagePath(
+                src={
                   '../assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp'
-                )}
+                }
                 alt=''
               />
             </div>
@@ -229,10 +216,7 @@ export default function Home() {
 
           <Link to='/catalog/3' className={styles['best-offers__card']}>
             <div className={styles['best-offers__card-image']}>
-              <img
-                src={getImagePath('../assets/images/products/Обложка-Windows-10-Home.webp')}
-                alt=''
-              />
+              <img src={'../assets/images/products/Обложка-Windows-10-Home.webp'} alt='' />
             </div>
 
             <h1 className={styles['best-offers__card-title']}>Windows 10 Home</h1>
@@ -247,9 +231,9 @@ export default function Home() {
           <Link to='/catalog/9' className={styles['best-offers__card']}>
             <div className={styles['best-offers__card-image']}>
               <img
-                src={getImagePath(
+                src={
                   '../assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp'
-                )}
+                }
                 alt=''
               />
             </div>

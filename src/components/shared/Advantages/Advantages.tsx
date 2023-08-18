@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 import { DynamicImage } from '@/components/ui/DynamicImage';
 import styles from './Advantages.module.scss';
-import { getImagePath } from '@/utils/getImagePath';
 
 export function Advantages() {
   return (
@@ -28,7 +27,7 @@ export function Advantages() {
           </div>
 
           <div className={styles['advantages__card-image']}>
-            <img src={getImagePath('assets/images/advantages/composition-1.png')} alt='' />
+            <img src={'/assets/images/advantages/composition-1.png'} alt='' />
           </div>
         </div>
 
@@ -45,15 +44,15 @@ export function Advantages() {
             </p>
 
             <div className={styles['advantages__card-partner']}>
-              <img src={getImagePath('assets/images/advantages/microsoft-partner.png')} alt='' />
+              <img src={'/assets/images/advantages/microsoft-partner.png'} alt='' />
             </div>
           </div>
 
           <div className={styles['advantages__card-image-2']}>
             <DynamicImage
               src={[
-                getImagePath('assets/images/advantages/composition-2.png'),
-                getImagePath('assets/images/advantages/composition-3.png'),
+                '/assets/images/advantages/composition-2.png',
+                '/assets/images/advantages/composition-3.png',
               ]}
               alt=''
             />
