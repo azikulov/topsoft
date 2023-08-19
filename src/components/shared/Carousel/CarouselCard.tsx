@@ -30,7 +30,7 @@ export function CarouselCard({ image, href }: CarouselCardProps) {
     <Link to={href} className={styles['carousel__card']}>
       <div className={styles['carousel__card-empty']}></div>
 
-      <img src={mediaQuery.matches ? image[0] : image[1]} alt='' />
+      <img src={mediaQuery.matches ? image[0] : image[1]} alt='' loading='lazy' />
     </Link>
   );
 }
