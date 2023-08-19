@@ -9,9 +9,13 @@ export default defineConfig({
     react(),
     {
       ...image(),
-      enforce: 'pre',
+      enforce: 'post',
     },
   ],
+  server: {
+    port: 3000,
+  },
+  publicDir: './public',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
