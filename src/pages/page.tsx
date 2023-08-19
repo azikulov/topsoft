@@ -13,12 +13,12 @@ export default function Home() {
       <Carousel>
         <CarouselCard
           href='/catalog/16'
-          image={['/assets/images/banner-1.png', '/assets/images/mobile-banner-1.png']}
+          image={['/assets/images/banner-1.webp', '/assets/images/mobile-banner-1.webp']}
         />
 
         <CarouselCard
           href='/catalog/4'
-          image={['/assets/images/banner-2.png', '/assets/images/mobile-banner-2.png']}
+          image={['/assets/images/banner-2.webp', '/assets/images/mobile-banner-2.webp']}
         />
       </Carousel>
 
