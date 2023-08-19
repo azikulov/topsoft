@@ -52,7 +52,7 @@ export function Carousel({ children }: CarouselProps) {
         dotListClass={styles['carousel-dots']}
         className={styles['multi-carousel']}
         customDot={<CarouselDots />}
-        autoPlaySpeed={3000}
+        autoPlaySpeed={7000}
         infinite
         autoPlay
         ssr
