@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import image from '@rollup/plugin-image';
@@ -31,6 +32,9 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+      },
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
