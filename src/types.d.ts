@@ -19,9 +19,9 @@ export interface Product {
   description: string;
   questionAnswer: Question[];
   recommendations: Recommendations[];
-  newPrice: string;
-  oldPrice: string;
-  discount: string;
+  newPrice?: string;
+  oldPrice?: string;
+  discount?: string;
   information?: {
     typeOfDelivery: string;
   };
