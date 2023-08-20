@@ -6,13 +6,14 @@ import cn from 'classnames';
 
 import { Loading } from '@/components/shared/Loading';
 import { Layout } from '@/components/ui/Layout';
-import { useProductsStore } from '@/store';
+import { useSelector } from '@/hooks/useSelector';
 import styles from './page.module.scss';
 import type { Product } from '@/types';
 
 export default function Catalog() {
   const [searchParams] = useSearchParams();
-  const { products } = useProductsStore();
+
+  const products = useSelector((state) => state.products.products);
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>();
   const [isLoadedWindow, setIsLoadedWindow] = useState<boolean>(false);

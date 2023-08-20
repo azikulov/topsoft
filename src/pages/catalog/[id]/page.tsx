@@ -7,14 +7,14 @@ import { Collapse } from '@/components/ui/Collapse';
 import { Loading } from '@/components/shared/Loading';
 import { Help } from '@/components/shared/Help';
 import { Rates } from '@/components/shared/Rates';
-import { useProductsStore } from '@/store';
+import { useSelector } from '@/hooks/useSelector';
 import styles from './page.module.scss';
 import type { Product } from '@/types';
 import type { CurrentTab } from './types';
 
 export default function CatalogID() {
   const params = useParams();
-  const { products } = useProductsStore();
+  const products = useSelector((state) => state.products.products);
 
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [currentTab, setCurrentTab] = useState<CurrentTab>('description');

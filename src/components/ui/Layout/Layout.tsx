@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 
 import styles from './Layout.module.scss';
 import { localProducts } from '@/data/localProducts';
-import { useProductsStore } from '@/store';
+import { useSelector } from '@/hooks/useSelector';
+import { useActions } from '@/hooks/useActions';
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { saveProducts, products } = useProductsStore();
+  const { saveProducts } = useActions();
+  const products = useSelector((state) => state.products.products);
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 

@@ -1,17 +1,13 @@
-/* eslint-disable no-unused-vars */
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { reducer as productsReducer } from './products/products.slice';
 
-import { create } from 'zustand';
-import type { Product } from '@/types';
+const reducer = combineReducers({
+  products: productsReducer,
+});
 
-interface ProductsState {
-  products: Product[];
-  saveProducts: (products: Product[]) => void;
-}
+export const store = configureStore({
+  reducer,
+});
 
-export const useProductsStore = create<ProductsState>((set) => ({
-  products: [],
-  saveProducts: (products) =>
-    set((state) => {
-      return { ...state, products };
-    }),
-}));
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

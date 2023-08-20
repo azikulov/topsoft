@@ -13,39 +13,43 @@ import Answers from '@/pages/answers/page';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/catalog',
-    element: <Catalog />,
-  },
-  {
-    path: '/catalog/:id',
-    element: <CatalogID />,
-  },
-  {
-    path: '/exchange',
-    element: <Exchange />,
-  },
-  {
-    path: '/instructions',
-    element: <Instructions />,
-  },
-  {
-    path: '/instructions/:id',
-    element: <InstructionsID />,
-  },
-  {
-    path: '/rates',
-    element: <Rates />,
-  },
-  {
-    path: '/about-company',
-    element: <AboutCompany />,
-  },
-  {
-    path: '/answers',
-    element: <Answers />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/catalog',
+        element: <Catalog />,
+      },
+      {
+        path: '/catalog/:id',
+        element: <CatalogID />,
+      },
+      {
+        path: '/exchange',
+        element: <Exchange />,
+      },
+      {
+        path: '/instructions',
+        element: <Instructions />,
+      },
+      {
+        path: '/instructions/:id',
+        element: <InstructionsID />,
+      },
+      {
+        path: '/rates',
+        element: <Rates />,
+      },
+      {
+        path: '/about-company',
+        element: <AboutCompany />,
+      },
+      {
+        path: '/answers',
+        element: <Answers />,
+      },
+    ],
   },
 ]);
