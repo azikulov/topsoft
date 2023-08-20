@@ -14,7 +14,7 @@ import type { CurrentTab } from './types';
 
 export default function CatalogID() {
   const params = useParams();
-  const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products);
 
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [currentTab, setCurrentTab] = useState<CurrentTab>('description');

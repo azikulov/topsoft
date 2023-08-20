@@ -1,16 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { Product } from '@/types';
 
-const initialState: { products: Product[] } = {
-  products: [],
-};
+const initialState: Product[] = [];
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
     saveProducts: (state, action: PayloadAction<Product[]>) => {
-      state.products = action.payload;
+      const products = new Set(action.payload);
+      state.push(...products);
     },
   },
 });

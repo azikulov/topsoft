@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-// Pages
+// Public Pages
 import Home from '@/pages/page';
 import Catalog from '@/pages/catalog/page';
 import CatalogID from '@/pages/catalog/[id]/page';
@@ -10,6 +10,10 @@ import InstructionsID from '@/pages/instructions/[id]/page';
 import Rates from '@/pages/rates/page';
 import AboutCompany from '@/pages/about-company/page';
 import Answers from '@/pages/answers/page';
+
+// Admin Private Pages
+import AdminProducts from './pages/admin/products/page';
+import AdminProductsID from './pages/admin/products/[id]/page';
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +53,18 @@ export const router = createBrowserRouter([
       {
         path: '/answers',
         element: <Answers />,
+      },
+    ],
+  },
+  {
+    children: [
+      {
+        path: '/admin/products',
+        element: <AdminProducts />,
+      },
+      {
+        path: '/admin/products/:id',
+        element: <AdminProductsID />,
       },
     ],
   },

@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Layout.module.scss';
-import { localProducts } from '@/data/localProducts';
 import { useSelector } from '@/hooks/useSelector';
 import { useActions } from '@/hooks/useActions';
+import { getProducts } from '@/api';
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children, hidden }: { children: React.ReactNode; hidden?: boolean }) {
   const { saveProducts } = useActions();
-  const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products);
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
@@ -17,11 +17,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    if (!products.length) saveProducts(localProducts);
-    // axios.get('/api/products').then((response) => saveProducts(response.data));
+    if (!products.length)
+      getProducts().then((products) => {
+        if (products) saveProducts(products);
+      });
   }, [saveProducts, products.length]);
 
-  return (
+  return hidden ? (
+    <>{children}</>
+  ) : (
     <div className={styles.layout}>
       <header className={styles.header}>
         <div className={styles['header__wrapper']}>

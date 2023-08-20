@@ -13,7 +13,7 @@ import type { Product } from '@/types';
 export default function Catalog() {
   const [searchParams] = useSearchParams();
 
-  const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products);
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>();
   const [isLoadedWindow, setIsLoadedWindow] = useState<boolean>(false);
