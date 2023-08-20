@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 // Public Pages
 import Home from '@/pages/page';
@@ -18,6 +18,7 @@ import AdminProductsID from './pages/admin/products/[id]/page';
 export const router = createBrowserRouter([
   {
     children: [
+      { path: '*', element: <Navigate to='/' /> },
       {
         path: '/',
         element: <Home />,
