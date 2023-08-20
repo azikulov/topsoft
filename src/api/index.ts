@@ -2,7 +2,7 @@ import { Product } from '@/types';
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.API_URL,
+  baseURL: import.meta.env.TOPSOFT_API_URL || 'https://necesse.serveo.net/',
   timeout: 5000,
 });
 
