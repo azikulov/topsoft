@@ -5,12 +5,14 @@ import styles from './Layout.module.scss';
 import { useSelector } from '@/hooks/useSelector';
 import { useActions } from '@/hooks/useActions';
 import { getProducts } from '@/api';
+import { LayoutModal } from './LayoutModal';
 
 export function Layout({ children, hidden }: { children: React.ReactNode; hidden?: boolean }) {
   const { saveProducts } = useActions();
   const products = useSelector((state) => state.products);
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   function handleToggleMenu() {
     setIsMenuOpen((prevState) => !prevState);
@@ -95,9 +97,12 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
                 </svg>
               </Link>
 
-              <Link className={styles['header__feedback-button']} to='#'>
+              <button
+                className={styles['header__feedback-button']}
+                onClick={() => setIsModalOpen((prevState) => !prevState)}
+              >
                 Заказать звонок
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -203,6 +208,11 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
           </div>
         )}
       </header>
+
+      <LayoutModal
+        hidden={!isModalOpen}
+        onClose={() => setIsModalOpen((prevState) => !prevState)}
+      />
 
       <main className={styles.main}>
         {children}
