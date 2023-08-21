@@ -1,10 +1,10 @@
-'use client';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import { Layout } from '@/components/ui/Layout';
 import styles from './page.module.scss';
 import { useSelector } from '@/hooks/useSelector';
+import { useActions } from '@/hooks/useActions';
 import { updateProduct } from '@/api';
 import type { Product } from '@/types';
 
@@ -12,6 +12,7 @@ export default function AdminProductsID() {
   const params = useParams();
   const navigate = useNavigate();
 
+  const { saveProducts } = useActions();
   const products = useSelector((state) => state.products);
 
   const [product, setProduct] = useState<Product>({} as Product);
@@ -32,7 +33,17 @@ export default function AdminProductsID() {
     };
 
     try {
-      await updateProduct(id, updatedValue);
+      const response = await updateProduct(id, updatedValue);
+      const updatedProducts = [...products];
+
+      if (response) {
+        updatedProducts.forEach((product, index) => {
+          if (product.id !== response.updatedProduct.id) return;
+
+          updatedProducts[index] = response.updatedProduct;
+          saveProducts(updatedProducts);
+        });
+      }
 
       setFormState((prevState) => ({ ...prevState, success: true }));
     } catch {
@@ -51,8 +62,8 @@ export default function AdminProductsID() {
       <div className={styles['dashboard']}>
         <div className={styles['dashboard__header']}>
           <h1 className={styles['dashboard__title']}>
-            Админ панель <Link to='/api/admin/keys'>| Ключи</Link>{' '}
-            <Link to='/api/admin/products'>| Продукты</Link>
+            Админ панель <Link to='/admin/keys'>| Ключи</Link>{' '}
+            <Link to='/admin/products'>| Продукты</Link>
           </h1>
         </div>
 

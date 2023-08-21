@@ -7,9 +7,9 @@ export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    saveProducts: (state, action: PayloadAction<Product[]>) => {
-      const products = new Set(action.payload);
-      state.push(...products);
+    saveProducts: (state, { payload }: PayloadAction<Product[]>) => {
+      const products = [...new Set(payload)];
+      return products;
     },
   },
 });

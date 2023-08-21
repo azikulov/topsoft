@@ -12,8 +12,8 @@ export default function AdminProducts() {
       <div className={styles['dashboard']}>
         <div className={styles['dashboard__header']}>
           <h1 className={styles['dashboard__title']}>
-            Админ панель <Link to='/api/admin/keys'>| Ключи</Link>{' '}
-            <Link to='/api/admin/products'>| Продукты</Link>
+            Админ панель <Link to='/admin/keys'>| Ключи</Link>{' '}
+            <Link to='/admin/products'>| Продукты</Link>
           </h1>
         </div>
 
