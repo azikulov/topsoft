@@ -1,10 +1,13 @@
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
+
 import { useDispatch } from '@/hooks/useDispatch';
-import { actions } from '@/store/products/products.slice';
+import { actions as productsActions } from '@/store/products/products.slice';
+import { actions as keysActions } from '@/store/keys/keys.slice';
 
 const rootActions = {
-  ...actions,
+  ...productsActions,
+  ...keysActions,
 };
 
 export function useActions() {

@@ -14,6 +14,7 @@ import Answers from '@/pages/answers/page';
 // Admin Private Pages
 import AdminProducts from './pages/admin/products/page';
 import AdminProductsID from './pages/admin/products/[id]/page';
+import AdminKeys from './pages/admin/keys/page';
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
       {
         path: '/admin/products/:id',
         element: <AdminProductsID />,
+      },
+      {
+        path: '/admin/keys',
+        element: <AdminKeys />,
       },
     ],
   },
