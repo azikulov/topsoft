@@ -7,19 +7,18 @@ import { Layout } from '@/components/ui/Layout';
 import { Collapse } from '@/components/ui/Collapse';
 import styles from './page.module.scss';
 
+// Images
+import Banner1 from '../../public/assets/images/banner-1.webp';
+import Banner2 from '../../public/assets/images/banner-2.webp';
+import MobileBanner1 from '../../public/assets/images/mobile-banner-1.webp';
+import MobileBanner2 from '../../public/assets/images/mobile-banner-2.webp';
+
 export default function Home() {
   return (
     <Layout>
       <Carousel>
-        <CarouselCard
-          href='/catalog/16'
-          image={['/assets/images/banner-1.webp', '/assets/images/mobile-banner-1.webp']}
-        />
-
-        <CarouselCard
-          href='/catalog/4'
-          image={['/assets/images/banner-2.webp', '/assets/images/mobile-banner-2.webp']}
-        />
+        <CarouselCard href='/catalog/16' image={[Banner1, MobileBanner1]} />
+        <CarouselCard href='/catalog/4' image={[Banner2, MobileBanner2]} />
       </Carousel>
 
       <div className={styles['software-categories']}>
