@@ -2,4 +2,4 @@
 
 Created by [azikulov](https://t.me/azikulov)
 
-Production [demo](https://topsoft-1465.netlify.app/)
+Production [demo](https://topsoft-vite.vercel.app/)
