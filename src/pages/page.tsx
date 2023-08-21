@@ -17,7 +17,13 @@ export default function Home() {
   return (
     <Layout>
       <Carousel>
-        <CarouselCard href='/catalog/16' image={[Banner1, MobileBanner1]} />
+        <CarouselCard
+          href='/catalog/16'
+          image={[
+            '/assets/images/banner-1-сжатый.webp',
+            '/assets/images/mobile-banner-1-сжатый.webp',
+          ]}
+        />
         {/* <CarouselCard href='/catalog/4' image={[Banner2, MobileBanner2]} /> */}
       </Carousel>
 
