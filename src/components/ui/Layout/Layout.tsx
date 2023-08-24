@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Layout.module.scss';
-import { useSelector } from '@/hooks/useSelector';
+// import { useSelector } from '@/hooks/useSelector';
 import { useActions } from '@/hooks/useActions';
 import { getProducts } from '@/api';
 import { LayoutModal } from './LayoutModal';
+import { localProducts as products } from '@/data/localProducts';
 
 export function Layout({ children, hidden }: { children: React.ReactNode; hidden?: boolean }) {
   const { saveProducts } = useActions();
-  const products = useSelector((state) => state.products);
+  // const products = useSelector((state) => state.products);
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -23,7 +24,8 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
       getProducts().then((products) => {
         if (products) saveProducts(products);
       });
-  }, [saveProducts, products.length]);
+    // }, [saveProducts, products.length]);
+  }, [saveProducts]);
 
   return hidden ? (
     <>{children}</>
