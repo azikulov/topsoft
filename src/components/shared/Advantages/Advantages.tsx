@@ -27,7 +27,7 @@ export function Advantages() {
           </div>
 
           <div className={styles['advantages__card-image']}>
-            <img src={'/assets/images/advantages/composition-1.png'} alt='' />
+            <img src={'/assets/images/advantages/composition-1.webp'} alt='' />
           </div>
         </div>
 
@@ -44,15 +44,15 @@ export function Advantages() {
             </p>
 
             <div className={styles['advantages__card-partner']}>
-              <img src={'/assets/images/advantages/microsoft-partner.png'} alt='' />
+              <img src={'/assets/images/advantages/microsoft-partner.webp'} alt='' />
             </div>
           </div>
 
           <div className={styles['advantages__card-image-2']}>
             <DynamicImage
               src={[
-                '/assets/images/advantages/composition-2.png',
-                '/assets/images/advantages/composition-3.png',
+                '/assets/images/advantages/composition-2.webp',
+                '/assets/images/advantages/composition-3.webp',
               ]}
               alt=''
             />

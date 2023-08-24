@@ -18,7 +18,7 @@ export function Help() {
         </div>
 
         <div className={styles['help__image']}>
-          <img src={'/assets/images/about-company/composition-1.png'} alt='' />
+          <img src={'/assets/images/about-company/composition-1.webp'} alt='' />
         </div>
       </div>
     </div>
