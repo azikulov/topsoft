@@ -151,7 +151,6 @@ export default function CatalogID() {
                   <input type='email' placeholder='example@mail.ru' />
 
                   {/* Tinkoff */}
-
                   <input type='hidden' name='terminalkey' value='1692273866873DEMO' />
                   <input type='hidden' name='frame' value='true' />
                   <input type='hidden' name='language' value='ru' />
