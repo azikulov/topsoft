@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Layout.module.scss';
 // import { useSelector } from '@/hooks/useSelector';
 import { useActions } from '@/hooks/useActions';
-import { getProducts } from '@/api';
+// import { getProducts } from '@/api';
 import { LayoutModal } from './LayoutModal';
 import { localProducts as products } from '@/data/localProducts';
 
@@ -20,10 +20,11 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
   }
 
   useEffect(() => {
-    if (!products.length)
-      getProducts().then((products) => {
-        if (products) saveProducts(products);
-      });
+    // if (!products.length)
+    //   if (products)
+    // getProducts().then((products) => {
+    saveProducts(products);
+    // });
     // }, [saveProducts, products.length]);
   }, [saveProducts]);
 

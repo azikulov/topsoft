@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import cn from 'classnames';
 
 import { Layout } from '@/components/ui/Layout';
@@ -40,8 +41,15 @@ export default function CatalogID() {
     setIsLoadedWindow(true);
   }, [params.id, products]);
 
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+  function pay(arg: any) {}
+
   return (
     <Layout>
+      <Helmet>
+        <script src='https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js'></script>
+      </Helmet>
+
       {isLoadedWindow && currentProduct ? (
         <>
           <div className={styles['breadcrumb']}>
@@ -84,7 +92,15 @@ export default function CatalogID() {
                 <span>353 отзыва</span>
               </div>
 
-              <form className={styles['product__form']}>
+              <form
+                className={styles['product__form']}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (window as any).TinkoffWidget.pay(e.currentTarget);
+                }}
+                name='payform-tinkoff'
+              >
                 {currentProduct.supportVersion && (
                   <>
                     <div className={styles['product__form-switchs']}>
@@ -133,9 +149,27 @@ export default function CatalogID() {
                     После оплаты код придёт на указанную почту
                   </p>
                   <input type='email' placeholder='example@mail.ru' />
+
+                  {/* Tinkoff */}
+
+                  <input type='hidden' name='terminalkey' value='1692273866873DEMO' />
+                  <input type='hidden' name='frame' value='true' />
+                  <input type='hidden' name='language' value='ru' />
+                  <input
+                    type='hidden'
+                    placeholder='Сумма заказа'
+                    name='amount'
+                    value={(currentProduct.newPrice || '1 190 ₽')
+                      .trim()
+                      .replace(' ', '')
+                      .replace('₽', '')}
+                    required
+                  />
                 </div>
 
-                <button className={styles['product__button']}>Купить</button>
+                <button type='submit' className={styles['product__button']}>
+                  Купить
+                </button>
               </form>
 
               <div className={styles['product__information']}>
