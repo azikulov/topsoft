@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 import { Layout } from '@/components/ui/Layout';
 import styles from './page.module.scss';
@@ -6,6 +7,8 @@ import styles from './page.module.scss';
 export default function Rates() {
   return (
     <Layout>
+      <Helmet async script={[{ src: '/libs/cackle-me.js', crossOrigin: 'anonymous' }]} />
+
       <div className={styles['breadcrumb']}>
         <p className={styles['breadcrumb__navigation']}>
           <Link to='/'>Главная →</Link> Отзывы
@@ -86,9 +89,9 @@ export default function Rates() {
               <span>Яндекс</span>
             </button>
           </div>
-
-          <iframe src='https://main--melodic-dieffenbachia-a1e85d.netlify.app/'></iframe>
         </div>
+
+        <div id='mc-review'></div>
       </div>
     </Layout>
   );
