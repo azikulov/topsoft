@@ -15,9 +15,12 @@ export default function AdminKeys() {
 
   const { saveKeys } = useActions();
   const { register, handleSubmit, reset } = useForm();
+  const { register: registerFilter, handleSubmit: handleFilterSubmit } = useForm<Omit<Key, 'id'>>();
 
+  const [filteredActivationKeys, setFilteredActivationKeys] = useState<Key[]>(keys);
   const [pageState, setPageState] = useState({
-    isLoading: true,
+    // isLoading: true,
+    isLoading: false,
     isError: false,
   });
   const [formState, setFormState] = useState({
@@ -65,6 +68,33 @@ export default function AdminKeys() {
       reset({ title: '', content: '', status: '' });
     }
     setFormState((prevState) => ({ ...prevState, isLoading: false }));
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function handleFilterKeys(data: Omit<Key, 'id'>) {
+    if (!data.title && !data.content && !data.status) return setFilteredActivationKeys(keys);
+
+    const filteredKeys = [];
+
+    filteredKeys.push(
+      ...filteredActivationKeys.filter((item) =>
+        item.title.toLowerCase().trim().includes(data.title.toLowerCase().trim())
+      )
+    );
+
+    filteredKeys.push(
+      ...filteredActivationKeys.filter((item) =>
+        item.content.toLowerCase().trim().includes(data.content.toLowerCase().trim())
+      )
+    );
+
+    filteredKeys.push(
+      ...filteredActivationKeys.filter((item) =>
+        item.status.toLowerCase().trim().includes(data.status.toLowerCase().trim())
+      )
+    );
+
+    setFilteredActivationKeys([...new Set(filteredKeys)]);
   }
 
   useEffect(() => {
@@ -135,6 +165,36 @@ export default function AdminKeys() {
               )}
             </form>
 
+            <form
+              onSubmit={handleFilterSubmit(handleFilterKeys)}
+              className={styles['dashboard__form']}
+            >
+              <select {...registerFilter('title')}>
+                <option defaultChecked value=''>
+                  Выберите название товара
+                </option>
+
+                {Array.isArray(products) &&
+                  products.map((product, key) => (
+                    <option key={key} value={product.title}>
+                      {product.title}
+                    </option>
+                  ))}
+              </select>
+
+              <textarea placeholder='Ключ' {...registerFilter('content')} />
+
+              <select {...registerFilter('status')}>
+                <option defaultChecked value=''>
+                  Выберите статус
+                </option>
+                <option value='Продан'>Продан</option>
+                <option value='Не продан'>Не продан</option>
+              </select>
+
+              <button type='submit'>Поиск</button>
+            </form>
+
             <table className={styles['dashboard__table']}>
               <thead>
                 <tr>
@@ -145,28 +205,27 @@ export default function AdminKeys() {
                 </tr>
               </thead>
               <tbody>
-                {keys &&
-                  keys.map((item, key) => (
-                    <tr key={key}>
-                      <td>{item.title}</td>
-                      <td>{item.content}</td>
-                      <td>{item.status}</td>
-                      <td>
-                        {keyItemState.isDeleting ? (
-                          <button disabled className={styles['dashboard__table-button-deleting']}>
-                            Удаление...
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => handleDeleteKey(item.id)}
-                            className={styles['dashboard__table-button-delete']}
-                          >
-                            Удалить
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
+                {filteredActivationKeys.map((item, key) => (
+                  <tr key={key}>
+                    <td>{item.title}</td>
+                    <td>{item.content}</td>
+                    <td>{item.status}</td>
+                    <td>
+                      {keyItemState.isDeleting ? (
+                        <button disabled className={styles['dashboard__table-button-deleting']}>
+                          Удаление...
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleDeleteKey(item.id)}
+                          className={styles['dashboard__table-button-delete']}
+                        >
+                          Удалить
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </>
