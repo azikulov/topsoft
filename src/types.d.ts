@@ -22,6 +22,7 @@ export interface Product {
   newPrice?: string;
   oldPrice?: string;
   discount?: string;
+  instructionId?: number;
   information?: {
     typeOfDelivery: string;
   };

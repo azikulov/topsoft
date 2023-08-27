@@ -223,7 +223,7 @@ export default function CatalogID() {
                 <div className={styles['product__information-row']}>
                   <span>Инструкция</span>
                   <div></div>
-                  <Link to={'/instructions'}>Читать</Link>
+                  <Link to={'/instructions/' + currentProduct.instructionId}>Читать</Link>
                 </div>
               </div>
             </div>
