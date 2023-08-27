@@ -75,46 +75,45 @@ export default function AdminKeys() {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function handleFilterKeys(data: Omit<Key, 'id'>) {
+  function handleFilterKeys(data: Omit<Omit<Key, 'id'>, 'status'>) {
     const filteredKeys = [];
 
     if (data.title && data.content) {
-      filteredKeys.push(
-        ...keys.filter((item) =>
-          item.title.toLowerCase().trim().includes(data.title.toLowerCase().trim())
-        )
+      const filtered = keys.filter(
+        (item) =>
+          item.title.trim().toLowerCase() === data.title.trim().toLowerCase() &&
+          item.content.trim().toLowerCase() === data.content.trim().toLowerCase()
       );
 
-      filteredKeys.push(
-        ...keys.filter((item) =>
-          item.content.toLowerCase().trim().includes(data.content.toLowerCase().trim())
-        )
-      );
-
-      return setFilteredActivationKeys(filteredKeys);
+      return setFilteredActivationKeys(filtered);
     }
 
     if (data.title) {
-      filteredKeys.push(
-        ...keys.filter((item) =>
-          item.title.toLowerCase().trim().includes(data.title.toLowerCase().trim())
-        )
+      const filtered = keys.filter(
+        (item) => item.title.trim().toLowerCase() === data.title.trim().toLowerCase()
       );
+
+      filteredKeys.push(...filtered);
+
+      console.log('Filter Title');
     }
 
     if (data.content) {
-      filteredKeys.push(
-        ...keys.filter((item) =>
-          item.content.toLowerCase().trim().includes(data.content.toLowerCase().trim())
-        )
+      const filtered = keys.filter(
+        (item) => item.content.trim().toLowerCase() === data.content.trim().toLowerCase()
       );
+
+      filteredKeys.push(...filtered);
+
+      console.log('Filter Content');
     }
 
     if (!data.title && !data.content) {
       filteredKeys.push(...keys);
+      console.log('Filter All');
     }
 
-    return setFilteredActivationKeys([...new Set(filteredKeys)]);
+    setFilteredActivationKeys([...new Set(filteredKeys)]);
   }
 
   useEffect(() => {
@@ -235,7 +234,9 @@ export default function AdminKeys() {
                     </tr>
                   ))
                 ) : (
-                  <p className={styles['dashboard__loading']}>Список пустой</p>
+                  <tr>
+                    <p className={styles['dashboard__loading']}>Список пустой</p>
+                  </tr>
                 )}
               </tbody>
             </table>
