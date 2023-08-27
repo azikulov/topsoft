@@ -17,7 +17,7 @@ export default function AdminKeys() {
   const { register, handleSubmit, reset } = useForm();
   const { register: registerFilter, handleSubmit: handleFilterSubmit } = useForm<Omit<Key, 'id'>>();
 
-  const [filteredActivationKeys, setFilteredActivationKeys] = useState<Key[]>(keys);
+  const [filteredActivationKeys, setFilteredActivationKeys] = useState<Key[]>([]);
   const [pageState, setPageState] = useState({
     // isLoading: true,
     isLoading: false,
@@ -37,7 +37,10 @@ export default function AdminKeys() {
       const response = await deleteKey(id);
 
       if (response?.message === 'The key successfully deleted!') {
-        if (response.keys) saveKeys(response.keys);
+        if (response.keys) {
+          saveKeys(response.keys);
+          setFilteredActivationKeys(response.keys);
+        }
         setKeyItemState((state) => ({ ...state, isDeleting: false }));
       }
     }, 1000);
@@ -65,6 +68,7 @@ export default function AdminKeys() {
 
     if (response && response.keys) {
       saveKeys(response.keys);
+      setFilteredActivationKeys(response.keys);
       reset({ title: '', content: '', status: '' });
     }
     setFormState((prevState) => ({ ...prevState, isLoading: false }));
@@ -101,7 +105,10 @@ export default function AdminKeys() {
     // Запрос на получение ключей из БД
     getKeys()
       .then((keys) => {
-        if (keys) return saveKeys(keys);
+        if (keys) {
+          setFilteredActivationKeys(keys);
+          return saveKeys(keys);
+        }
         // Если ключей нет, то выводим ошибку
         setPageState((prevState) => ({ ...prevState, isError: true }));
       })
@@ -205,27 +212,29 @@ export default function AdminKeys() {
                 </tr>
               </thead>
               <tbody>
-                {filteredActivationKeys.map((item, key) => (
-                  <tr key={key}>
-                    <td>{item.title}</td>
-                    <td>{item.content}</td>
-                    <td>{item.status}</td>
-                    <td>
-                      {keyItemState.isDeleting ? (
-                        <button disabled className={styles['dashboard__table-button-deleting']}>
-                          Удаление...
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => handleDeleteKey(item.id)}
-                          className={styles['dashboard__table-button-delete']}
-                        >
-                          Удалить
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                {filteredActivationKeys.length
+                  ? filteredActivationKeys.map((item, key) => (
+                      <tr key={key}>
+                        <td>{item.title}</td>
+                        <td>{item.content}</td>
+                        <td>{item.status}</td>
+                        <td>
+                          {keyItemState.isDeleting ? (
+                            <button disabled className={styles['dashboard__table-button-deleting']}>
+                              Удаление...
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => handleDeleteKey(item.id)}
+                              className={styles['dashboard__table-button-delete']}
+                            >
+                              Удалить
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  : 'Список пустой'}
               </tbody>
             </table>
           </>
