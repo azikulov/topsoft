@@ -78,37 +78,43 @@ export default function AdminKeys() {
   function handleFilterKeys(data: Omit<Key, 'id'>) {
     const filteredKeys = [];
 
-    if (!data.title && !data.content) {
-      if (data.title) {
-        filteredKeys.push(
-          ...filteredActivationKeys.filter((item) =>
-            item.title.toLowerCase().trim().includes(data.title.toLowerCase().trim())
-          )
-        );
-      }
+    if (data.title && data.content) {
+      filteredKeys.push(
+        ...keys.filter((item) =>
+          item.title.toLowerCase().trim().includes(data.title.toLowerCase().trim())
+        )
+      );
 
       filteredKeys.push(
-        ...filteredActivationKeys.filter((item) =>
+        ...keys.filter((item) =>
           item.content.toLowerCase().trim().includes(data.content.toLowerCase().trim())
         )
       );
 
-      return setFilteredActivationKeys(filteredActivationKeys);
+      return setFilteredActivationKeys(filteredKeys);
     }
 
-    filteredKeys.push(
-      ...filteredActivationKeys.filter((item) =>
-        item.title.toLowerCase().trim().includes(data.title.toLowerCase().trim())
-      )
-    );
+    if (data.title) {
+      filteredKeys.push(
+        ...keys.filter((item) =>
+          item.title.toLowerCase().trim().includes(data.title.toLowerCase().trim())
+        )
+      );
+    }
 
-    filteredKeys.push(
-      ...filteredActivationKeys.filter((item) =>
-        item.content.toLowerCase().trim().includes(data.content.toLowerCase().trim())
-      )
-    );
+    if (data.content) {
+      filteredKeys.push(
+        ...keys.filter((item) =>
+          item.content.toLowerCase().trim().includes(data.content.toLowerCase().trim())
+        )
+      );
+    }
 
-    setFilteredActivationKeys([...new Set(filteredKeys)]);
+    if (!data.title && !data.content) {
+      filteredKeys.push(...keys);
+    }
+
+    return setFilteredActivationKeys([...new Set(filteredKeys)]);
   }
 
   useEffect(() => {
@@ -206,29 +212,31 @@ export default function AdminKeys() {
                 </tr>
               </thead>
               <tbody>
-                {filteredActivationKeys.length
-                  ? filteredActivationKeys.map((item, key) => (
-                      <tr key={key}>
-                        <td>{item.title}</td>
-                        <td>{item.content}</td>
-                        <td>{item.status}</td>
-                        <td>
-                          {keyItemState.isDeleting ? (
-                            <button disabled className={styles['dashboard__table-button-deleting']}>
-                              Удаление...
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => handleDeleteKey(item.id)}
-                              className={styles['dashboard__table-button-delete']}
-                            >
-                              Удалить
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    ))
-                  : 'Список пустой'}
+                {filteredActivationKeys.length ? (
+                  filteredActivationKeys.map((item, key) => (
+                    <tr key={key}>
+                      <td>{item.title}</td>
+                      <td>{item.content}</td>
+                      <td>{item.status}</td>
+                      <td>
+                        {keyItemState.isDeleting ? (
+                          <button disabled className={styles['dashboard__table-button-deleting']}>
+                            Удаление...
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => handleDeleteKey(item.id)}
+                            className={styles['dashboard__table-button-delete']}
+                          >
+                            Удалить
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <p className={styles['dashboard__loading']}>Список пустой</p>
+                )}
               </tbody>
             </table>
           </>
