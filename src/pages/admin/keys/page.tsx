@@ -59,7 +59,7 @@ export default function AdminKeys() {
     if (!keys) return;
 
     keys.forEach((item) => {
-      newFormData.push({ ...data, content: item } as Key);
+      newFormData.push({ ...data, content: item, status: 'Не продан' } as Key);
     });
 
     // Делаем запрос в API на создание ключа в БД
@@ -69,16 +69,32 @@ export default function AdminKeys() {
     if (response && response.keys) {
       saveKeys(response.keys);
       setFilteredActivationKeys(response.keys);
-      reset({ title: '', content: '', status: '' });
+      reset({ title: '', content: '', status: 'Не продан' });
     }
     setFormState((prevState) => ({ ...prevState, isLoading: false }));
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleFilterKeys(data: Omit<Key, 'id'>) {
-    if (!data.title && !data.content && !data.status) return setFilteredActivationKeys(keys);
-
     const filteredKeys = [];
+
+    if (!data.title && !data.content) {
+      if (data.title) {
+        filteredKeys.push(
+          ...filteredActivationKeys.filter((item) =>
+            item.title.toLowerCase().trim().includes(data.title.toLowerCase().trim())
+          )
+        );
+      }
+
+      filteredKeys.push(
+        ...filteredActivationKeys.filter((item) =>
+          item.content.toLowerCase().trim().includes(data.content.toLowerCase().trim())
+        )
+      );
+
+      return setFilteredActivationKeys(filteredActivationKeys);
+    }
 
     filteredKeys.push(
       ...filteredActivationKeys.filter((item) =>
@@ -89,12 +105,6 @@ export default function AdminKeys() {
     filteredKeys.push(
       ...filteredActivationKeys.filter((item) =>
         item.content.toLowerCase().trim().includes(data.content.toLowerCase().trim())
-      )
-    );
-
-    filteredKeys.push(
-      ...filteredActivationKeys.filter((item) =>
-        item.status.toLowerCase().trim().includes(data.status.toLowerCase().trim())
       )
     );
 
@@ -155,14 +165,6 @@ export default function AdminKeys() {
 
               <textarea placeholder='Ключ' {...register('content', { required: true })} />
 
-              <select {...register('status', { required: true })}>
-                <option defaultChecked value=''>
-                  Выберите статус
-                </option>
-                <option value='Продан'>Продан</option>
-                <option value='Не продан'>Не продан</option>
-              </select>
-
               {formState.isLoading ? (
                 <button type='button' disabled>
                   Добавление...
@@ -190,14 +192,6 @@ export default function AdminKeys() {
               </select>
 
               <textarea placeholder='Ключ' {...registerFilter('content')} />
-
-              <select {...registerFilter('status')}>
-                <option defaultChecked value=''>
-                  Выберите статус
-                </option>
-                <option value='Продан'>Продан</option>
-                <option value='Не продан'>Не продан</option>
-              </select>
 
               <button type='submit'>Поиск</button>
             </form>
