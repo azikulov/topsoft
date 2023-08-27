@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import styles from './Layout.module.scss';
 import { useSelector } from '@/hooks/useSelector';
 import { useActions } from '@/hooks/useActions';
-import { getProducts } from '@/api';
+import { getKeys, getProducts } from '@/api';
 import { LayoutModal } from './LayoutModal';
 
 export function Layout({ children, hidden }: { children: React.ReactNode; hidden?: boolean }) {
-  const { saveProducts } = useActions();
+  const { saveProducts, saveKeys } = useActions();
   const products = useSelector((state) => state.products);
+  const keys = useSelector((state) => state.keys);
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -23,7 +24,12 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
       getProducts().then((products) => {
         if (products) saveProducts(products);
       });
-  }, [saveProducts, products.length]);
+
+    if (!keys.length)
+      getKeys().then((keys) => {
+        if (keys) saveKeys(keys);
+      });
+  }, [saveProducts, products.length, saveKeys, keys.length]);
 
   return hidden ? (
     <>{children}</>

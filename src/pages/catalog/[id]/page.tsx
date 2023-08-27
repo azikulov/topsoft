@@ -13,11 +13,12 @@ import styles from './page.module.scss';
 import type { Product } from '@/types';
 import type { CurrentTab } from './types';
 import { useForm } from 'react-hook-form';
-import { sendMail } from '@/api';
+import { sendMail, updateKey } from '@/api';
 
 export default function CatalogID() {
   const params = useParams();
   const products = useSelector((state) => state.products);
+  const activationKeys = useSelector((state) => state.keys);
 
   const { register, handleSubmit } = useForm<{ email: string }>();
 
@@ -39,6 +40,8 @@ export default function CatalogID() {
     if (rates?.scrollIntoView) rates.scrollIntoView({ behavior: 'smooth' });
   }
 
+  const getNotSaleKey = activationKeys.filter((item) => item.status === 'Не продан')[0];
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function handleBuyProduct(data: { email: string }, e: any) {
     e.preventDefault();
@@ -47,14 +50,16 @@ export default function CatalogID() {
 
     const response = await sendMail({
       to: data.email,
-      html: 'новая покупка',
+      html: '<b>Ваш ключ: </b>' + getNotSaleKey.content,
       subject: ' ',
       text: ' ',
     });
 
-    if (response?.message === 'An error has occurred!') {
-      console.log('Почта не отправлена!');
+    if (response?.message !== 'An error has occurred!') {
+      updateKey(getNotSaleKey.id, 'Продан');
+      return;
     }
+    console.log('Почта не отправлена!');
   }
 
   useEffect(() => {

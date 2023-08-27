@@ -41,6 +41,16 @@ export async function createKey(keys: Key[]): CreateKeys {
   }
 }
 
+export async function updateKey(id: number, status: string) {
+  try {
+    const response = await api.put(`api/keys/${id}`, { status });
+
+    if (response.status === 201) return response.data;
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:updateKey`);
+  }
+}
+
 export async function getKeys(): GetKeys {
   try {
     const response = await api.get(`api/keys`);
