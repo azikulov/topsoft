@@ -74,7 +74,6 @@ export default function AdminKeys() {
     setFormState((prevState) => ({ ...prevState, isLoading: false }));
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleFilterKeys(data: Omit<Omit<Key, 'id'>, 'status'>) {
     const filteredKeys = [];
 

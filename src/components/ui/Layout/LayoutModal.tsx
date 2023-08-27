@@ -18,7 +18,6 @@ export function LayoutModal({ hidden, onClose }: LayoutModalProps) {
 
   const [modalState, setIsModalState] = useState<'form' | 'success'>('form');
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars, @typescript-eslint/no-explicit-any
   async function handleFormSubmit(data: { name: string; phone: string }) {
     // Логика отправки данных на почту
 
