@@ -65,3 +65,17 @@ export async function deleteKey(id: number): DeleteKey {
     };
   }
 }
+
+export async function sendMail(mail: { to: string; text: string; html: string; subject: string }) {
+  try {
+    const response = await api.post(`api/sendmail`, mail);
+
+    if (response.status === 200) return { message: 'Mail sent successfully!', mail };
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:deleteKey`);
+
+    return {
+      message: 'An error has occurred!',
+    };
+  }
+}

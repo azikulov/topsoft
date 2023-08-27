@@ -5,6 +5,8 @@ import { PatternFormat } from 'react-number-format';
 import styles from './Layout.module.scss';
 import type { LayoutModalProps } from './types';
 import { Controller, useForm } from 'react-hook-form';
+import { sendMail } from '@/api';
+import { adminEmail } from '@/config';
 
 export function LayoutModal({ hidden, onClose }: LayoutModalProps) {
   const {
@@ -12,15 +14,24 @@ export function LayoutModal({ hidden, onClose }: LayoutModalProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<{ name: string; phone: string }>();
 
   const [modalState, setIsModalState] = useState<'form' | 'success'>('form');
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars, @typescript-eslint/no-explicit-any
-  function handleFormSubmit(data: any) {
+  async function handleFormSubmit(data: { name: string; phone: string }) {
     // Логика отправки данных на почту
 
-    setIsModalState('success');
+    const response = await sendMail({
+      to: adminEmail,
+      html: `<p>Phone ${data.phone}</p><p>Name: ${data.name}</p>`,
+      subject: ' ',
+      text: ' ',
+    });
+
+    if (response?.message !== 'An error has occurred!') {
+      return setIsModalState('success');
+    }
   }
 
   if (hidden) return;

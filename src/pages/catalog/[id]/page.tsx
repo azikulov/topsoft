@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import cn from 'classnames';
@@ -12,10 +12,14 @@ import { useSelector } from '@/hooks/useSelector';
 import styles from './page.module.scss';
 import type { Product } from '@/types';
 import type { CurrentTab } from './types';
+import { useForm } from 'react-hook-form';
+import { sendMail } from '@/api';
 
 export default function CatalogID() {
   const params = useParams();
   const products = useSelector((state) => state.products);
+
+  const { register, handleSubmit } = useForm<{ email: string }>();
 
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [currentTab, setCurrentTab] = useState<CurrentTab>('description');
@@ -33,6 +37,24 @@ export default function CatalogID() {
   function handleScrollToRates() {
     const rates = document.getElementById('rates');
     if (rates?.scrollIntoView) rates.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async function handleBuyProduct(data: { email: string }, e: any) {
+    e.preventDefault();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).TinkoffWidget.pay(e.target);
+
+    const response = await sendMail({
+      to: data.email,
+      html: 'новая покупка',
+      subject: ' ',
+      text: ' ',
+    });
+
+    if (response?.message === 'An error has occurred!') {
+      console.log('Почта не отправлена!');
+    }
   }
 
   useEffect(() => {
@@ -94,11 +116,7 @@ export default function CatalogID() {
 
               <form
                 className={styles['product__form']}
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  (window as any).TinkoffWidget.pay(e.currentTarget);
-                }}
+                onSubmit={handleSubmit(handleBuyProduct)}
                 name='payform-tinkoff'
               >
                 {currentProduct.supportVersion && (
@@ -148,8 +166,6 @@ export default function CatalogID() {
                   <p className={styles['product__field-title']}>
                     После оплаты код придёт на указанную почту
                   </p>
-                  <input type='email' placeholder='example@mail.ru' />
-
                   {/* Tinkoff */}
                   <input type='hidden' name='terminalkey' value='1692273866873DEMO' />
                   <input type='hidden' name='frame' value='true' />
@@ -164,6 +180,8 @@ export default function CatalogID() {
                       .replace('₽', '')}
                     required
                   />
+
+                  <input type='email' placeholder='example@mail.ru' {...register('email')} />
                 </div>
 
                 <button type='submit' className={styles['product__button']}>
