@@ -40,7 +40,11 @@ export default function CatalogID() {
     if (rates?.scrollIntoView) rates.scrollIntoView({ behavior: 'smooth' });
   }
 
-  const getNotSaleKey = activationKeys.filter((item) => item.status === 'Не продан')[0];
+  const getNotSaleKey = activationKeys.filter(
+    (item) =>
+      item.status === 'Не продан' &&
+      item.title.trim().toLowerCase() === currentProduct?.title.trim().toLowerCase()
+  )[0];
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function handleBuyProduct(data: { email: string }, e: any) {
