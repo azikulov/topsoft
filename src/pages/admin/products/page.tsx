@@ -6,6 +6,7 @@ import { useSelector } from '@/hooks/useSelector';
 
 export default function AdminProducts() {
   const products = useSelector((state) => state.products);
+  const activationKeys = useSelector((state) => state.keys);
 
   return (
     <Layout hidden>
@@ -29,40 +30,41 @@ export default function AdminProducts() {
               </tr>
             </thead>
             <tbody>
-              {products.map((item, key) => (
-                <tr key={key}>
-                  <td>
-                    <Link
-                      className={styles['dashboard__table-button-view']}
-                      to={'/admin/products/' + item.id}
-                    >
-                      {item.title}
-                    </Link>
-                  </td>
-                  <td>{item.category}</td>
-                  <td>{item.newPrice}</td>
-                  <td>{item.oldPrice}</td>
-                  <td>
-                    {/* {
-                      activationKeys.filter(
-                        (activationKey) =>
-                          activationKey.title.toLowerCase().trim() ===
-                            item.title.toLowerCase().trim() &&
-                          activationKey.status.toLowerCase().trim() ===
-                            'Не продан'.toLowerCase().trim()
-                      ).length
-                    }
-                    /
-                    {
-                      activationKeys.filter(
-                        (activationKey) =>
-                          activationKey.title.toLowerCase().trim() ===
-                          item.title.toLowerCase().trim()
-                      ).length
-                    } */}
-                  </td>
-                </tr>
-              ))}
+              {products &&
+                products.map((item, key) => (
+                  <tr key={key}>
+                    <td>
+                      <Link
+                        className={styles['dashboard__table-button-view']}
+                        to={'/admin/products/' + item.id}
+                      >
+                        {item.title}
+                      </Link>
+                    </td>
+                    <td>{item.category}</td>
+                    <td>{item.newPrice}</td>
+                    <td>{item.oldPrice}</td>
+                    <td>
+                      {
+                        activationKeys.filter(
+                          (activationKey) =>
+                            activationKey.title.toLowerCase().trim() ===
+                              item.title.toLowerCase().trim() &&
+                            activationKey.status.toLowerCase().trim() ===
+                              'Не продан'.toLowerCase().trim()
+                        ).length
+                      }
+                      /
+                      {
+                        activationKeys.filter(
+                          (activationKey) =>
+                            activationKey.title.toLowerCase().trim() ===
+                            item.title.toLowerCase().trim()
+                        ).length
+                      }
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         }

@@ -114,9 +114,6 @@ export default function CatalogID() {
     setIsLoadedWindow(true);
   }, [params.id, products]);
 
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-  function pay(arg: any) {}
-
   return (
     <Layout>
       <Helmet>
@@ -129,7 +126,9 @@ export default function CatalogID() {
             <p className={styles['breadcrumb__navigation']}>
               <Link to='/'>Главная → </Link>
               <Link to='/catalog'>Каталог → {currentProduct.category} → </Link>
-              <span>{currentProduct.title}</span>
+              <span>
+                {currentProduct.title.replace(' Без привязки', '').replace(' С привязкой', '')}
+              </span>
             </p>
           </div>
 
@@ -139,7 +138,9 @@ export default function CatalogID() {
             </div>
 
             <div className={styles['product__content']}>
-              <h1 className={styles['product__content-title']}>{currentProduct.title}</h1>
+              <h1 className={styles['product__content-title']}>
+                {currentProduct.title.replace(' Без привязки', '').replace(' С привязкой', '')}
+              </h1>
 
               <div onClick={handleScrollToRates} className={styles['product__content-rates']}>
                 <div>
@@ -173,21 +174,33 @@ export default function CatalogID() {
                 {currentProduct.supportVersion && (
                   <>
                     <div className={styles['product__form-switchs']}>
-                      <div className={styles['product__form-switch']}>
+                      <Link
+                        to={'/catalog/' + String(currentProduct.id).replace('.5', '') + '.5'}
+                        className={styles['product__form-switch']}
+                      >
                         <input
-                          defaultChecked
+                          checked={currentProduct.title.endsWith('Без привязки')}
                           type='radio'
                           name='radio'
                           id='without-binding'
                           hidden
                         />
                         <label htmlFor='without-binding'>Без привязки</label>
-                      </div>
+                      </Link>
 
-                      <div className={styles['product__form-switch']}>
-                        <input type='radio' name='radio' id='with-binding' hidden />
+                      <Link
+                        to={'/catalog/' + String(currentProduct.id).replace('.5', '')}
+                        className={styles['product__form-switch']}
+                      >
+                        <input
+                          checked={currentProduct.title.endsWith('С привязкой')}
+                          type='radio'
+                          name='radio'
+                          id='with-binding'
+                          hidden
+                        />
                         <label htmlFor='with-binding'>С привязкой</label>
-                      </div>
+                      </Link>
                     </div>
 
                     <button

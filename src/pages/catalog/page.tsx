@@ -13,12 +13,39 @@ import type { Product } from '@/types';
 export default function Catalog() {
   const [searchParams] = useSearchParams();
 
-  const products = useSelector((state) => state.products);
+  const stateProducts = useSelector((state) => state.products);
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>();
   const [isLoadedWindow, setIsLoadedWindow] = useState<boolean>(false);
 
   useEffect(() => {
+    const products = [...JSON.parse(JSON.stringify(stateProducts))];
+
+    const target = [
+      'Microsoft Office 2021 Professional Plus',
+      'Microsoft Office 2019 Professional Plus',
+      'Microsoft Office 2016 Professional Plus',
+    ];
+
+    for (let i = 0; i < products.length; i++) {
+      products[i].title = products[i].title.trim();
+
+      if (products[i].supportVersion) {
+        products[i].title = products[i].title.replace(' С привязкой', '').trim();
+        products[i].title = products[i].title.replace(' Без привязки', '').trim();
+      }
+    }
+
+    for (let i = 0; i < products.length; i++) {
+      target.forEach((item) => {
+        if (item.trim().toLowerCase() === products[i].title.trim().toLowerCase()) {
+          products.splice(i, 1);
+        }
+      });
+    }
+
+    // console.log(products);
+
     function filterProducts() {
       if (!products.length) return;
 
@@ -61,7 +88,7 @@ export default function Catalog() {
     }
 
     filterProducts();
-  }, [searchParams, products]);
+  }, [searchParams, stateProducts]);
 
   return (
     <Layout>
