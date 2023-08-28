@@ -15,7 +15,7 @@ export default function AdminOrders() {
       if (response) setOrders(response);
       setIsLoadedWindow(true);
     });
-  }, [orders]);
+  }, []);
 
   return (
     <Layout hidden>
