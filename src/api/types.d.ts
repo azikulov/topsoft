@@ -19,3 +19,15 @@ export type DeleteKey = Promise<
     }
   | undefined
 >;
+
+export type CreateTrashKeys = Promise<{ message: string; trashKeys: Key[] } | undefined>;
+
+export type GetKeys = Promise<Key[] | undefined>;
+
+export type DeleteTrashKey = Promise<
+  | {
+      message: string;
+      trashKeys?: Key[];
+    }
+  | undefined
+>;

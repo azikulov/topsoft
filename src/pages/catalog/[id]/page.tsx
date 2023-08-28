@@ -14,7 +14,7 @@ import styles from './page.module.scss';
 import type { Product } from '@/types';
 import type { CurrentTab } from './types';
 import { useForm } from 'react-hook-form';
-import { getKeys, sendMail, updateKey } from '@/api';
+import { getKeys, getTrashKeys, sendMail, updateKey } from '@/api';
 import { adminEmail } from '@/config';
 import { useActions } from '@/hooks/useActions';
 
@@ -91,7 +91,15 @@ export default function CatalogID() {
         updateKey(notSaleKey.id, 'Продан');
       }
     } else {
-      const message = `<b>Ваш ключ: ${'Other Key'}</b>`;
+      const response = await getTrashKeys();
+
+      if (!response) return;
+
+      const trashKeys = response.filter(
+        (item) => item.title.trim().toLowerCase() === currentProduct?.title.trim().toLowerCase()
+      )[0];
+
+      const message = `<b>Ваш ключ: ${trashKeys.content}</b>`;
       await sendMail({
         to: data.email,
         html: message,
@@ -101,7 +109,7 @@ export default function CatalogID() {
 
       await sendMail({
         to: adminEmail,
-        html: '<b>Юзеру такой то неверный ключ отправлен: </b>' + 'Other Key',
+        html: '<b>Юзеру такой то неверный ключ отправлен: </b>' + trashKeys.content,
         subject: ' ',
         text: ' ',
       });

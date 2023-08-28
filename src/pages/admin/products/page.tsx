@@ -15,6 +15,7 @@ export default function AdminProducts() {
           <h1 className={styles['dashboard__title']}>
             Админ панель <Link to='/admin/keys'>| Ключи</Link>{' '}
             <Link to='/admin/products'>| Продукты</Link>
+            <Link to='/admin/trash-keys'>| Мусорные ключи</Link>
           </h1>
         </div>
 

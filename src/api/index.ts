@@ -1,6 +1,13 @@
 import axios from 'axios';
 import type { Key, Product } from '@/types';
-import type { CreateKeys, DeleteKey, GetKeys, UpdatedProduct } from './types';
+import type {
+  CreateKeys,
+  CreateTrashKeys,
+  DeleteKey,
+  DeleteTrashKey,
+  GetKeys,
+  UpdatedProduct,
+} from './types';
 
 const api = axios.create({
   baseURL: import.meta.env.DEV ? 'http://localhost:3000/' : 'https://necesse.serveo.net/',
@@ -69,6 +76,52 @@ export async function deleteKey(id: number): DeleteKey {
       return { message: 'The key successfully deleted!', keys: response.data.keys };
   } catch (e) {
     console.log(`An error has occurred!\nPath: src/api/index.ts:deleteKey`);
+
+    return {
+      message: 'An error has occurred!',
+    };
+  }
+}
+
+export async function createTrashKey(keys: Key[]): CreateTrashKeys {
+  try {
+    const response = await api.post(`/api/trash-keys`, keys);
+
+    if (response.status === 201) return response.data;
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:createTrashKey`);
+    console.log(e);
+  }
+}
+
+export async function updateTrashKey(id: number, status: string) {
+  try {
+    const response = await api.put(`api/trash-keys/${id}`, { status });
+
+    if (response.status === 201) return response.data;
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:updateTrashKey`);
+  }
+}
+
+export async function getTrashKeys(): GetKeys {
+  try {
+    const response = await api.get(`api/trash-keys`);
+
+    if (response.status === 200) return response.data;
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:getTrashKeys`);
+  }
+}
+
+export async function deleteTrashKey(id: number): DeleteTrashKey {
+  try {
+    const response = await api.delete(`api/trash-keys/${id}`);
+
+    if (response.status === 200)
+      return { message: 'The trash key successfully deleted!', trashKeys: response.data.trashKeys };
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:deleteTrashKey`);
 
     return {
       message: 'An error has occurred!',

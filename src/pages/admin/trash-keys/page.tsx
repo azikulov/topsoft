@@ -6,18 +6,16 @@ import { Layout } from '@/components/ui/Layout';
 import styles from './page.module.scss';
 import { useActions } from '@/hooks/useActions';
 import { useSelector } from '@/hooks/useSelector';
-import { createKey, deleteKey, getKeys } from '@/api';
+import { createTrashKey, deleteTrashKey, getTrashKeys } from '@/api';
 import type { Key } from '@/types';
 
-export default function AdminKeys() {
+export default function AdminTashKeys() {
   const products = useSelector((state) => state.products);
-  const keys = useSelector((state) => state.keys);
+  const [trashKeys, setTrashKeys] = useState<Key[]>([]);
 
   const { saveKeys } = useActions();
   const { register, handleSubmit, reset } = useForm();
-  const { register: registerFilter, handleSubmit: handleFilterSubmit } = useForm<Omit<Key, 'id'>>();
 
-  const [filteredActivationKeys, setFilteredActivationKeys] = useState<Key[]>([]);
   const [pageState, setPageState] = useState({
     // isLoading: true,
     isLoading: false,
@@ -34,12 +32,11 @@ export default function AdminKeys() {
     setKeyItemState((state) => ({ ...state, isDeleting: true }));
 
     setTimeout(async () => {
-      const response = await deleteKey(id);
+      const response = await deleteTrashKey(id);
 
-      if (response?.message === 'The key successfully deleted!') {
-        if (response.keys) {
-          saveKeys(response.keys);
-          setFilteredActivationKeys(response.keys);
+      if (response?.message === 'The trash key successfully deleted!') {
+        if (response.trashKeys) {
+          setTrashKeys(response.trashKeys);
         }
         setKeyItemState((state) => ({ ...state, isDeleting: false }));
       }
@@ -64,65 +61,20 @@ export default function AdminKeys() {
 
     // Делаем запрос в API на создание ключа в БД
     // console.log(newFormData);
-    const response = await createKey(newFormData);
+    const response = await createTrashKey(newFormData);
 
-    if (response && response.keys) {
-      saveKeys(response.keys);
-      setFilteredActivationKeys(response.keys);
+    if (response && response.trashKeys) {
+      setTrashKeys(response.trashKeys);
       reset({ title: '', content: '', status: 'Не продан' });
     }
     setFormState((prevState) => ({ ...prevState, isLoading: false }));
   }
 
-  function handleFilterKeys(data: Omit<Omit<Key, 'id'>, 'status'>) {
-    const filteredKeys = [];
-
-    if (data.title && data.content) {
-      const filtered = keys.filter(
-        (item) =>
-          item.title.trim().toLowerCase() === data.title.trim().toLowerCase() &&
-          item.content.trim().toLowerCase() === data.content.trim().toLowerCase()
-      );
-
-      return setFilteredActivationKeys(filtered);
-    }
-
-    if (data.title) {
-      const filtered = keys.filter(
-        (item) => item.title.trim().toLowerCase() === data.title.trim().toLowerCase()
-      );
-
-      filteredKeys.push(...filtered);
-
-      console.log('Filter Title');
-    }
-
-    if (data.content) {
-      const filtered = keys.filter(
-        (item) => item.content.trim().toLowerCase() === data.content.trim().toLowerCase()
-      );
-
-      filteredKeys.push(...filtered);
-
-      console.log('Filter Content');
-    }
-
-    if (!data.title && !data.content) {
-      filteredKeys.push(...keys);
-      console.log('Filter All');
-    }
-
-    setFilteredActivationKeys([...new Set(filteredKeys)]);
-  }
-
   useEffect(() => {
     // Запрос на получение ключей из БД
-    getKeys()
+    getTrashKeys()
       .then((keys) => {
-        if (keys) {
-          setFilteredActivationKeys(keys);
-          return saveKeys(keys);
-        }
+        if (keys) return setTrashKeys(keys);
         // Если ключей нет, то выводим ошибку
         setPageState((prevState) => ({ ...prevState, isError: true }));
       })
@@ -179,28 +131,6 @@ export default function AdminKeys() {
               )}
             </form>
 
-            <form
-              onSubmit={handleFilterSubmit(handleFilterKeys)}
-              className={styles['dashboard__form']}
-            >
-              <select {...registerFilter('title')}>
-                <option defaultChecked value=''>
-                  Выберите название товара
-                </option>
-
-                {Array.isArray(products) &&
-                  products.map((product, key) => (
-                    <option key={key} value={product.title}>
-                      {product.title}
-                    </option>
-                  ))}
-              </select>
-
-              <textarea placeholder='Ключ' {...registerFilter('content')} />
-
-              <button type='submit'>Поиск</button>
-            </form>
-
             <table className={styles['dashboard__table']}>
               <thead>
                 <tr>
@@ -211,8 +141,8 @@ export default function AdminKeys() {
                 </tr>
               </thead>
               <tbody>
-                {filteredActivationKeys.length ? (
-                  filteredActivationKeys.map((item, key) => (
+                {trashKeys.length ? (
+                  trashKeys.map((item, key) => (
                     <tr key={key}>
                       <td>{item.title}</td>
                       <td>{item.content}</td>
