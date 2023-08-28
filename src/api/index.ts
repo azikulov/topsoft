@@ -11,7 +11,9 @@ import type {
 } from './types';
 
 const api = axios.create({
-  baseURL: import.meta.env.DEV ? 'http://localhost:3000/' : 'https://necesse.serveo.net/',
+  baseURL: import.meta.env.DEV
+    ? 'http://localhost:3000/'
+    : 'https://c5cb-5-34-113-51.ngrok-free.app/',
   timeout: 5000,
 });
 
