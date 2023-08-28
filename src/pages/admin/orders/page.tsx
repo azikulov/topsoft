@@ -35,7 +35,10 @@ export default function AdminOrders() {
 
   useEffect(() => {
     getOrders().then((response) => {
-      if (response) setOrders(response);
+      if (response) {
+        setOrders(response);
+        setFilteredOrders(response);
+      }
       setIsLoadedWindow(true);
     });
   }, []);
