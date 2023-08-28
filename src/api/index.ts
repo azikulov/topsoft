@@ -1,7 +1,8 @@
 import axios from 'axios';
-import type { Key, Product } from '@/types';
+import type { Key, Order, Product } from '@/types';
 import type {
   CreateKeys,
+  CreateOrder,
   CreateTrashKeys,
   DeleteKey,
   DeleteTrashKey,
@@ -24,6 +25,17 @@ export async function getProducts(): Promise<Product[] | void> {
   }
 }
 
+export async function createKey(keys: Key[]): CreateKeys {
+  try {
+    const response = await api.post(`/api/keys`, keys);
+
+    if (response.status === 201) return response.data;
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:createKey`);
+    console.log(e);
+  }
+}
+
 export async function updateProduct(
   id: number,
   updatedProduct: Partial<Product>
@@ -34,17 +46,6 @@ export async function updateProduct(
     if (response.status === 201) return response.data;
   } catch (e) {
     console.log(`An error has occurred!\nPath: src/api/index.ts:updateProduct`);
-  }
-}
-
-export async function createKey(keys: Key[]): CreateKeys {
-  try {
-    const response = await api.post(`/api/keys`, keys);
-
-    if (response.status === 201) return response.data;
-  } catch (e) {
-    console.log(`An error has occurred!\nPath: src/api/index.ts:createKey`);
-    console.log(e);
   }
 }
 
@@ -126,6 +127,27 @@ export async function deleteTrashKey(id: number): DeleteTrashKey {
     return {
       message: 'An error has occurred!',
     };
+  }
+}
+
+export async function getOrders(): Promise<Order[] | void> {
+  try {
+    const response = await api.get('api/orders');
+
+    if (response.status === 200) return response.data;
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:getOrders`);
+  }
+}
+
+export async function createOrder(order: Omit<Order, 'id'>): CreateOrder {
+  try {
+    const response = await api.post(`/api/orders`, order);
+
+    if (response.status === 201) return response.data;
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:createOrder`);
+    console.log(e);
   }
 }
 

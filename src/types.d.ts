@@ -41,3 +41,11 @@ export interface Key {
   content: string;
   status: string;
 }
+
+export interface Order {
+  id: number;
+  title: string;
+  email: string;
+  key: string;
+  time: string;
+}

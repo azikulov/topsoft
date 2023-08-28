@@ -14,7 +14,7 @@ import styles from './page.module.scss';
 import type { Product } from '@/types';
 import type { CurrentTab } from './types';
 import { useForm } from 'react-hook-form';
-import { getKeys, getTrashKeys, sendMail, updateKey } from '@/api';
+import { createOrder, getKeys, getTrashKeys, sendMail, updateKey } from '@/api';
 import { adminEmail } from '@/config';
 import { useActions } from '@/hooks/useActions';
 
@@ -62,6 +62,9 @@ export default function CatalogID() {
 
   async function handleBuyProduct(data: { email: string }, e: any) {
     e.preventDefault();
+
+    if (!currentProduct) return;
+
     (window as any).TinkoffWidget.pay(e.target);
 
     const notSaleKey = await getNotSaleKey();
@@ -75,6 +78,13 @@ export default function CatalogID() {
         text: ' ',
       });
 
+      await createOrder({
+        email: data.email,
+        key: notSaleKey.content,
+        time: 'time',
+        title: currentProduct.title,
+      });
+
       if (response && response.message === 'An error has occurred!')
         console.log('Почта не отправлена!');
 
@@ -83,7 +93,7 @@ export default function CatalogID() {
           to: adminEmail,
           html: `<b>Почта: </b> ${
             data.email
-          }<br/><b>Время: </b> ${'time'}<br/><b>Название продукта: </b> ${currentProduct?.title}`,
+          }<br/><b>Время: </b> ${'time'}<br/><b>Название продукта: </b> ${currentProduct.title}`,
           subject: ' ',
           text: ' ',
         });
@@ -96,7 +106,7 @@ export default function CatalogID() {
       if (!response) return;
 
       const trashKeys = response.filter(
-        (item) => item.title.trim().toLowerCase() === currentProduct?.title.trim().toLowerCase()
+        (item) => item.title.trim().toLowerCase() === currentProduct.title.trim().toLowerCase()
       )[0];
 
       const message = `<b>Ваш ключ: ${trashKeys.content}</b>`;
@@ -112,6 +122,13 @@ export default function CatalogID() {
         html: '<b>Юзеру такой то неверный ключ отправлен: </b>' + trashKeys.content,
         subject: ' ',
         text: ' ',
+      });
+
+      await createOrder({
+        email: data.email,
+        key: trashKeys.content,
+        time: 'time',
+        title: currentProduct.title,
       });
     }
   }

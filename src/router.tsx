@@ -16,6 +16,7 @@ import AdminProducts from './pages/admin/products/page';
 import AdminProductsID from './pages/admin/products/[id]/page';
 import AdminKeys from './pages/admin/keys/page';
 import AdminTrashKeys from './pages/admin/trash-keys/page';
+import AdminOrders from './pages/admin/orders/page';
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
       {
         path: '/admin/trash-keys',
         element: <AdminTrashKeys />,
+      },
+      {
+        path: '/admin/orders',
+        element: <AdminOrders />,
       },
     ],
   },

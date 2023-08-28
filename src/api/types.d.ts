@@ -1,4 +1,4 @@
-import type { Key, Product } from '@/types';
+import type { Key, Order, Product } from '@/types';
 
 export type UpdatedProduct<T> = Promise<
   | {
@@ -21,6 +21,8 @@ export type DeleteKey = Promise<
 >;
 
 export type CreateTrashKeys = Promise<{ message: string; trashKeys: Key[] } | undefined>;
+
+export type CreateOrder = Promise<{ message: string; orders: Order[] } | undefined>;
 
 export type GetKeys = Promise<Key[] | undefined>;
 
