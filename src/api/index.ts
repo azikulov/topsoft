@@ -14,7 +14,8 @@ const api = axios.create({
   // baseURL: import.meta.env.DEV
   //   ? 'http://localhost:3000/'
   //   : 'https://c5cb-5-34-113-51.ngrok-free.app/',
-  baseURL: 'https://e344-188-124-232-83.ngrok-free.app/',
+  // baseURL: 'https://e344-188-124-232-83.ngrok-free.app/',
+  baseURL: 'http://localhost:3000/',
   timeout: 5000,
   headers: {
     'ngrok-skip-browser-warning': '69420',
@@ -58,7 +59,7 @@ export async function updateProduct(
 export async function updateKey(id: number, status: string) {
   try {
     const response = await api.put(`api/keys/${id}`, { status });
-
+    console.log('Update');
     if (response.status === 201) return response.data;
   } catch (e) {
     console.log(`An error has occurred!\nPath: src/api/index.ts:updateKey`);
@@ -163,7 +164,7 @@ export async function sendMail(mail: { to: string; text: string; html: string; s
 
     if (response.status === 200) return { message: 'Mail sent successfully!', mail };
   } catch (e) {
-    console.log(`An error has occurred!\nPath: src/api/index.ts:deleteKey`);
+    console.log(`An error has occurred!\nPath: src/api/index.ts:sendMail`);
 
     return {
       message: 'An error has occurred!',

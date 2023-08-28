@@ -48,7 +48,7 @@ export default function CatalogID() {
   async function getNotSaleKey() {
     const response = await getKeys();
 
-    if (!response) return;
+    if (!response) return undefined;
 
     saveKeys(response);
     const notSaleKey = response.filter(
@@ -82,26 +82,23 @@ export default function CatalogID() {
       await createOrder({
         email: data.email,
         key: notSaleKey.content,
-        // time: 'time',
         time: dayjs().format('DD-MM-YYYY HH:mm'),
         title: currentProduct.title,
       });
 
+      await updateKey(notSaleKey.id, 'Продан');
+
       if (response && response.message === 'An error has occurred!')
         console.log('Почта не отправлена!');
 
-      if (notSaleKey.id) {
-        await sendMail({
-          to: adminEmail,
-          html: `<b>Почта: </b> ${
-            data.email
-          }<br/><b>Время: </b> ${'time'}<br/><b>Название продукта: </b> ${currentProduct.title}`,
-          subject: ' ',
-          text: ' ',
-        });
-
-        updateKey(notSaleKey.id, 'Продан');
-      }
+      await sendMail({
+        to: adminEmail,
+        html: `<b>Почта: </b> ${
+          data.email
+        }<br/><b>Время: </b> ${'time'}<br/><b>Название продукта: </b> ${currentProduct.title}`,
+        subject: ' ',
+        text: ' ',
+      });
     } else {
       const response = await getTrashKeys();
 
