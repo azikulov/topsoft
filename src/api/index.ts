@@ -11,15 +11,8 @@ import type {
 } from './types';
 
 const api = axios.create({
-  // baseURL: import.meta.env.DEV
-  //   ? 'http://localhost:3000/'
-  //   : 'https://c5cb-5-34-113-51.ngrok-free.app/',
-  // baseURL: 'https://e344-188-124-232-83.ngrok-free.app/',
-  baseURL: 'http://localhost:3000/',
+  baseURL: import.meta.env.DEV ? 'http://localhost:3000/' : 'https://topsoft-server.onrender.com/',
   timeout: 5000,
-  headers: {
-    'ngrok-skip-browser-warning': '69420',
-  },
 });
 
 export async function getProducts(): Promise<Product[] | void> {
