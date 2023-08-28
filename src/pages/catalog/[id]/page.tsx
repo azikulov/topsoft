@@ -14,13 +14,15 @@ import styles from './page.module.scss';
 import type { Product } from '@/types';
 import type { CurrentTab } from './types';
 import { useForm } from 'react-hook-form';
-import { sendMail, updateKey } from '@/api';
+import { getKeys, sendMail, updateKey } from '@/api';
 import { adminEmail } from '@/config';
+import { useActions } from '@/hooks/useActions';
 
 export default function CatalogID() {
   const params = useParams();
   const products = useSelector((state) => state.products);
-  const activationKeys = useSelector((state) => state.keys);
+
+  const { saveKeys } = useActions();
 
   const { register, handleSubmit } = useForm<{ email: string }>();
 
@@ -42,10 +44,15 @@ export default function CatalogID() {
     if (rates?.scrollIntoView) rates.scrollIntoView({ behavior: 'smooth' });
   }
 
-  function getNotSaleKey() {
-    const notSaleKey = activationKeys.filter(
+  async function getNotSaleKey() {
+    const response = await getKeys();
+
+    if (!response) return;
+
+    saveKeys(response);
+    const notSaleKey = response.filter(
       (item) =>
-        item.status === 'Не продан' &&
+        item.status.trim().toLowerCase() === 'Не продан'.trim().toLowerCase() &&
         item.title.trim().toLowerCase() === currentProduct?.title.trim().toLowerCase()
     )[0];
 
@@ -57,40 +64,48 @@ export default function CatalogID() {
     e.preventDefault();
     (window as any).TinkoffWidget.pay(e.target);
 
-    const notSaleKey = getNotSaleKey();
-    const message = `<b>Ваш ключ: ${notSaleKey?.content || 'Other Key From Other Database'}</b>`;
+    const notSaleKey = await getNotSaleKey();
 
-    const response = await sendMail({
-      to: data.email,
-      html: message,
-      subject: ' ',
-      text: ' ',
-    });
-
-    if (response?.message === 'An error has occurred!') {
-      console.log('Почта не отправлена!');
-      return;
-    }
-
-    if (notSaleKey?.id) {
-      await sendMail({
-        to: adminEmail,
-        html: `<b>Почта: </b> ${
-          data.email
-        }<br/><b>Время: </b> ${'time'}<br/><b>Название продукта: </b> ${currentProduct?.title}`,
+    if (notSaleKey) {
+      const message = `<b>Ваш ключ: ${notSaleKey.content}</b>`;
+      const response = await sendMail({
+        to: data.email,
+        html: message,
         subject: ' ',
         text: ' ',
       });
 
-      return updateKey(notSaleKey.id, 'Продан');
-    }
+      if (response && response.message === 'An error has occurred!')
+        console.log('Почта не отправлена!');
 
-    await sendMail({
-      to: adminEmail,
-      html: '<b>Юзеру такой то неверный ключ отправлен: </b>' + 'Other key',
-      subject: ' ',
-      text: ' ',
-    });
+      if (notSaleKey.id) {
+        await sendMail({
+          to: adminEmail,
+          html: `<b>Почта: </b> ${
+            data.email
+          }<br/><b>Время: </b> ${'time'}<br/><b>Название продукта: </b> ${currentProduct?.title}`,
+          subject: ' ',
+          text: ' ',
+        });
+
+        updateKey(notSaleKey.id, 'Продан');
+      }
+    } else {
+      const message = `<b>Ваш ключ: ${'Other Key'}</b>`;
+      await sendMail({
+        to: data.email,
+        html: message,
+        subject: ' ',
+        text: ' ',
+      });
+
+      await sendMail({
+        to: adminEmail,
+        html: '<b>Юзеру такой то неверный ключ отправлен: </b>' + 'Other Key',
+        subject: ' ',
+        text: ' ',
+      });
+    }
   }
 
   useEffect(() => {
