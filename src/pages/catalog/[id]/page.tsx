@@ -2,7 +2,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useForm } from 'react-hook-form';
 import cn from 'classnames';
+import dayjs from 'dayjs';
 
 import { Layout } from '@/components/ui/Layout';
 import { Collapse } from '@/components/ui/Collapse';
@@ -10,13 +12,12 @@ import { Loading } from '@/components/shared/Loading';
 import { Help } from '@/components/shared/Help';
 import { Rates } from '@/components/shared/Rates';
 import { useSelector } from '@/hooks/useSelector';
-import styles from './page.module.scss';
-import type { Product } from '@/types';
-import type { CurrentTab } from './types';
-import { useForm } from 'react-hook-form';
 import { createOrder, getKeys, getTrashKeys, sendMail, updateKey } from '@/api';
 import { adminEmail } from '@/config';
 import { useActions } from '@/hooks/useActions';
+import styles from './page.module.scss';
+import type { Product } from '@/types';
+import type { CurrentTab } from './types';
 
 export default function CatalogID() {
   const params = useParams();
@@ -81,7 +82,8 @@ export default function CatalogID() {
       await createOrder({
         email: data.email,
         key: notSaleKey.content,
-        time: 'time',
+        // time: 'time',
+        time: dayjs().format('DD-MM-YYYY HH:mm'),
         title: currentProduct.title,
       });
 
@@ -127,7 +129,7 @@ export default function CatalogID() {
       await createOrder({
         email: data.email,
         key: trashKeys.content,
-        time: 'time',
+        time: dayjs().format('DD-MM-YYYY HH:mm'),
         title: currentProduct.title,
       });
     }
