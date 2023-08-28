@@ -11,10 +11,14 @@ import type {
 } from './types';
 
 const api = axios.create({
-  baseURL: import.meta.env.DEV
-    ? 'http://localhost:3000/'
-    : 'https://c5cb-5-34-113-51.ngrok-free.app/',
+  // baseURL: import.meta.env.DEV
+  //   ? 'http://localhost:3000/'
+  //   : 'https://c5cb-5-34-113-51.ngrok-free.app/',
+  baseURL: 'https://c5cb-5-34-113-51.ngrok-free.app/',
   timeout: 5000,
+  headers: {
+    'ngrok-skip-browser-warning': '69420',
+  },
 });
 
 export async function getProducts(): Promise<Product[] | void> {
