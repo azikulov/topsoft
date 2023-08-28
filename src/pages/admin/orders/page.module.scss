@@ -53,7 +53,8 @@
     align-items: center;
     column-gap: 1rem;
 
-    input {
+    input,
+    select {
       border-radius: 0.375rem;
       border: 1px solid #e3e4ff;
       display: inline-block;

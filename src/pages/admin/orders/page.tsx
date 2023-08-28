@@ -5,10 +5,33 @@ import { Layout } from '@/components/ui/Layout';
 import styles from './page.module.scss';
 import { Order } from '@/types';
 import { getOrders } from '@/api';
+import { useForm } from 'react-hook-form';
+import { useSelector } from '@/hooks/useSelector';
 
 export default function AdminOrders() {
+  const products = useSelector((state) => state.products);
+  const { register: registerFilter, handleSubmit: handleFilterSubmit } =
+    useForm<Omit<Order, 'id'>>();
+
   const [orders, setOrders] = useState<Order[]>([]);
+  const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
   const [isLoadedWindow, setIsLoadedWindow] = useState<boolean>(false);
+
+  function filterItems(list: Order[], filters: Omit<Order, 'id'>) {
+    return list.filter((item) => {
+      return (
+        (!filters.title || item.title.includes(filters.title)) &&
+        (!filters.email || item.email === filters.email) &&
+        (!filters.key || item.key === filters.key) &&
+        (!filters.time || item.time === filters.time)
+      );
+    });
+  }
+
+  function handleFilterKeys(data: Omit<Order, 'id'>) {
+    const filtered = filterItems(orders, data);
+    setFilteredOrders(filtered);
+  }
 
   useEffect(() => {
     getOrders().then((response) => {
@@ -32,27 +55,58 @@ export default function AdminOrders() {
         {!isLoadedWindow && <p className={styles['dashboard__loading']}>Загрузка данных</p>}
 
         {isLoadedWindow && (
-          <table className={styles['dashboard__table']}>
-            <thead>
-              <tr>
-                <th>Продукт</th>
-                <th>Ключ</th>
-                <th>Почта</th>
-                <th>Время</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders &&
-                orders.map((item, key) => (
-                  <tr key={key}>
-                    <td>{item.title}</td>
-                    <td>{item.key}</td>
-                    <td>{item.email}</td>
-                    <td>{item.time}</td>
+          <>
+            <form
+              onSubmit={handleFilterSubmit(handleFilterKeys)}
+              className={styles['dashboard__form']}
+            >
+              <select {...registerFilter('title')}>
+                <option defaultChecked value=''>
+                  Выберите название товара
+                </option>
+
+                {Array.isArray(products) &&
+                  products.map((product, key) => (
+                    <option key={key} value={product.title}>
+                      {product.title}
+                    </option>
+                  ))}
+              </select>
+
+              <input type='text' placeholder='Ключ' {...registerFilter('key')} />
+              <input type='text' placeholder='Почта' {...registerFilter('email')} />
+              <input type='text' placeholder='Время' {...registerFilter('time')} />
+
+              <button type='submit'>Поиск</button>
+            </form>
+
+            <table className={styles['dashboard__table']}>
+              <thead>
+                <tr>
+                  <th>Продукт</th>
+                  <th>Ключ</th>
+                  <th>Почта</th>
+                  <th>Время</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredOrders.length ? (
+                  filteredOrders.map((item, key) => (
+                    <tr key={key}>
+                      <td>{item.title}</td>
+                      <td>{item.key}</td>
+                      <td>{item.email}</td>
+                      <td>{item.time}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <p className={styles['dashboard__loading']}>список пустой</p>
                   </tr>
-                ))}
-            </tbody>
-          </table>
+                )}
+              </tbody>
+            </table>
+          </>
         )}
       </div>
     </Layout>
