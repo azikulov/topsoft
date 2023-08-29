@@ -12,7 +12,7 @@ import { Loading } from '@/components/shared/Loading';
 import { Help } from '@/components/shared/Help';
 import { Rates } from '@/components/shared/Rates';
 import { useSelector } from '@/hooks/useSelector';
-import { createOrder, getKeys, getTrashKeys, sendMail, updateKey } from '@/api';
+import { createOrder, getKeys, getTrashKeys, sendMail } from '@/api';
 import { adminEmail } from '@/config';
 import { useActions } from '@/hooks/useActions';
 import styles from './page.module.scss';
@@ -79,14 +79,15 @@ export default function CatalogID() {
         text: ' ',
       });
 
-      await createOrder({
-        email: data.email,
-        key: notSaleKey.content,
-        time: dayjs().format('DD-MM-YYYY HH:mm'),
-        title: currentProduct.title,
-      });
-
-      await updateKey(notSaleKey.id, 'Продан');
+      await createOrder(
+        {
+          email: data.email,
+          key: notSaleKey.content,
+          time: dayjs().format('DD-MM-YYYY HH:mm'),
+          title: currentProduct.title,
+        },
+        { ...notSaleKey, status: 'Продан' }
+      );
 
       if (response && response.message === 'An error has occurred!')
         console.log('Почта не отправлена!');
@@ -123,12 +124,15 @@ export default function CatalogID() {
         text: ' ',
       });
 
-      await createOrder({
-        email: data.email,
-        key: trashKeys.content,
-        time: dayjs().format('DD-MM-YYYY HH:mm'),
-        title: currentProduct.title,
-      });
+      await createOrder(
+        {
+          email: data.email,
+          key: trashKeys.content,
+          time: dayjs().format('DD-MM-YYYY HH:mm'),
+          title: currentProduct.title,
+        },
+        trashKeys
+      );
     }
   }
 

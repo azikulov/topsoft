@@ -14,6 +14,10 @@ const api = axios.create({
   // baseURL: import.meta.env.DEV ? 'http://localhost:3000/' : 'https://topsoft-server.onrender.com/',
   baseURL: 'https://necesse.serveo.net/',
   timeout: 5000,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+  },
 });
 
 export async function getProducts(): Promise<Product[] | void> {
@@ -50,10 +54,10 @@ export async function updateProduct(
   }
 }
 
-export async function updateKey(id: number, status: string) {
+export async function updateKey(id: string, status: string) {
   try {
-    const response = await api.put(`api/keys/${id}`, { status });
-    console.log('Update');
+    const response = await api.post(`api/keys/${id}`, { status });
+
     if (response.status === 201) return response.data;
   } catch (e) {
     console.log(`An error has occurred!\nPath: src/api/index.ts:updateKey`);
@@ -141,9 +145,9 @@ export async function getOrders(): Promise<Order[] | void> {
   }
 }
 
-export async function createOrder(order: Omit<Order, 'id'>): CreateOrder {
+export async function createOrder(order: Omit<Order, 'id'>, key: Key): CreateOrder {
   try {
-    const response = await api.post(`/api/orders`, order);
+    const response = await api.post(`/api/orders`, { order, key });
 
     if (response.status === 201) return response.data;
   } catch (e) {
@@ -159,6 +163,8 @@ export async function sendMail(mail: { to: string; text: string; html: string; s
     if (response.status === 200) return { message: 'Mail sent successfully!', mail };
   } catch (e) {
     console.log(`An error has occurred!\nPath: src/api/index.ts:sendMail`);
+
+    console.log(e);
 
     return {
       message: 'An error has occurred!',
