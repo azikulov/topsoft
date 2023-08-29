@@ -1,52 +1,13 @@
-import { Helmet } from 'react-helmet-async';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { useCackleWidget } from '@/hooks/useCackleWidget';
 import styles from './Rates.module.scss';
-import { useEffect } from 'react';
 
 export function Rates() {
-  useEffect(() => {
-    function recursion() {
-      const openButton = document.querySelector('.mc-btn2') as HTMLButtonElement;
-      const closeButton = document.querySelector('.mc-close2') as HTMLButtonElement;
-      const modal = document.querySelector('.mc-modal2') as HTMLDivElement;
-
-      if (document.querySelector('.mc-btn2')) {
-        openButton.addEventListener('click', () => {
-          console.log('opened!');
-
-          setTimeout(() => {
-            console.log('started timeout!');
-
-            modal.removeAttribute('style');
-            modal.classList.add('opened');
-          }, 100);
-
-          // Close
-          if (document.querySelector('.mc-close2')) {
-            closeButton.addEventListener('click', () => {
-              console.log('close button exists!');
-
-              modal.classList.remove('opened');
-            });
-          }
-        });
-      } else {
-        setTimeout(() => {
-          recursion();
-        }, 1000);
-      }
-    }
-
-    recursion();
-  }, []);
+  useCackleWidget();
 
   return (
     <div className={styles['rates']}>
-      <Helmet
-        async
-        script={[{ src: '/libs/cackle-me.js', crossOrigin: 'anonymous', async: true }]}
-      />
-
       <h1 id='rates' className={styles['rates__title']}>
         Отзывы
       </h1>
