@@ -12,7 +12,7 @@ import type {
 
 const api = axios.create({
   // baseURL: import.meta.env.DEV ? 'http://localhost:3000/' : 'https://topsoft-server.onrender.com/',
-  baseURL: 'https://topsoft-server.onrender.com/',
+  baseURL: 'https://necesse.serveo.net/',
   timeout: 5000,
 });
 
