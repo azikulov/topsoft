@@ -131,7 +131,7 @@ export default function CatalogID() {
           time: dayjs().format('DD-MM-YYYY HH:mm'),
           title: currentProduct.title,
         },
-        trashKeys
+        { ...trashKeys }
       );
     }
   }
