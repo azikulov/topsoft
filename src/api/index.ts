@@ -145,9 +145,12 @@ export async function getOrders(): Promise<Order[] | void> {
   }
 }
 
-export async function createOrder(order: Omit<Order, 'id'>, key: Key): CreateOrder {
+export async function createOrder(
+  order: Omit<Order, 'id'>,
+  { key, trashKey }: { key?: Key; trashKey?: Key }
+): CreateOrder {
   try {
-    const response = await api.post(`/api/orders`, { order, key });
+    const response = await api.post(`/api/orders`, { order, key, trashKey });
 
     if (response.status === 201) return response.data;
   } catch (e) {

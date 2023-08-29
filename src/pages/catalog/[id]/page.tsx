@@ -86,7 +86,7 @@ export default function CatalogID() {
           time: dayjs().format('DD-MM-YYYY HH:mm'),
           title: currentProduct.title,
         },
-        { ...notSaleKey, status: 'Продан' }
+        { key: { ...notSaleKey, status: 'Продан' } }
       );
 
       if (response && response.message === 'An error has occurred!')
@@ -130,8 +130,9 @@ export default function CatalogID() {
           key: trashKeys.content,
           time: dayjs().format('DD-MM-YYYY HH:mm'),
           title: currentProduct.title,
+          trashKey: true,
         },
-        { ...trashKeys }
+        { trashKey: trashKeys }
       );
     }
   }

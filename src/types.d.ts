@@ -47,5 +47,6 @@ export interface Order {
   title: string;
   email: string;
   key: string;
+  trashKey?: boolean;
   time: string;
 }

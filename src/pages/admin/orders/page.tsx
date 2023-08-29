@@ -97,7 +97,9 @@ export default function AdminOrders() {
                   filteredOrders.map((item, key) => (
                     <tr key={key}>
                       <td>{item.title}</td>
-                      <td>{item.key}</td>
+                      <td style={item.trashKey ? { color: 'red', fontWeight: 700 } : {}}>
+                        {item.key}
+                      </td>
                       <td>{item.email}</td>
                       <td>{item.time}</td>
                     </tr>
