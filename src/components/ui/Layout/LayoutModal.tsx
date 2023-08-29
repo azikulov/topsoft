@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PatternFormat } from 'react-number-format';
 
@@ -19,19 +19,20 @@ export function LayoutModal({ hidden, onClose }: LayoutModalProps) {
   const [modalState, setIsModalState] = useState<'form' | 'success'>('form');
 
   async function handleFormSubmit(data: { name: string; phone: string }) {
-    // Логика отправки данных на почту
+    setIsModalState('success');
 
-    const response = await sendMail({
+    // Отправка данных на почту
+    await sendMail({
       to: adminEmail,
       html: `<p>Phone ${data.phone}</p><p>Name: ${data.name}</p>`,
       subject: ' ',
       text: ' ',
     });
-
-    if (response?.message !== 'An error has occurred!') {
-      return setIsModalState('success');
-    }
   }
+
+  useEffect(() => {
+    if (modalState === 'success' && hidden) setIsModalState('form');
+  }, [hidden, modalState]);
 
   if (hidden) return;
 

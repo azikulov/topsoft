@@ -274,7 +274,12 @@ export default function CatalogID() {
                     required
                   />
 
-                  <input type='email' placeholder='example@mail.ru' {...register('email')} />
+                  <input
+                    type='email'
+                    placeholder='example@mail.ru'
+                    {...register('email', { required: true })}
+                    required
+                  />
                 </div>
 
                 <button type='submit' className={styles['product__button']}>
