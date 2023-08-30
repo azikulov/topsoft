@@ -30,6 +30,7 @@ export default function AdminProductsID() {
       newPrice: product.newPrice,
       oldPrice: product.oldPrice,
       discount: product.discount,
+      date: product.date,
     };
 
     try {
@@ -108,6 +109,13 @@ export default function AdminProductsID() {
               }
               placeholder='Скидка'
               defaultValue={product.discount}
+            />
+
+            <input
+              type='datetime-local'
+              onChange={(e) => setProduct((prevState) => ({ ...prevState, date: e.target.value }))}
+              placeholder='Время скидки'
+              defaultValue={product.date as string}
             />
 
             <button onClick={() => handleUpdateProduct(product.id)}>Сохранить изменения</button>

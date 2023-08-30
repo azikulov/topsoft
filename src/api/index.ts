@@ -11,9 +11,8 @@ import type {
 } from './types';
 
 const api = axios.create({
-  // baseURL: import.meta.env.DEV ? 'http://localhost:3000/' : 'https://topsoft-server.onrender.com/',
-  baseURL: 'https://topsoft-server.onrender.com/',
-  // baseURL: 'http://localhost:3000/',
+  // baseURL: 'https://topsoft-server.onrender.com/',
+  baseURL: 'http://localhost:3000/',
   timeout: 5000,
   headers: {
     'Access-Control-Allow-Origin': '*',
