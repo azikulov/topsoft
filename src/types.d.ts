@@ -23,7 +23,7 @@ export interface Product {
   oldPrice?: string;
   discount?: string;
   instructionId?: number;
-  date: Date | string;
+  date?: Date | string;
   information?: {
     typeOfDelivery: string;
   };

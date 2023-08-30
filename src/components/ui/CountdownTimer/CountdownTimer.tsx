@@ -7,6 +7,8 @@ export function CountdownTimer({ targetDate, ...rest }: CountdownTimerProps) {
   const [remainingTime, setRemainingTime] = useState<number>(0);
 
   useEffect(() => {
+    if (!targetDate) return;
+
     const interval = setInterval(() => {
       const now = new Date();
 

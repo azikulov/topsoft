@@ -10,6 +10,7 @@ import { CountdownTimer } from '@/components/ui/CountdownTimer';
 import styles from './page.module.scss';
 import { useSelector } from '@/hooks/useSelector';
 import type { Product } from '@/types';
+import { addDays } from 'date-fns';
 
 export default function Home() {
   const stateProducts = useSelector((state) => state.products);
@@ -139,7 +140,9 @@ export default function Home() {
 
                   <CountdownTimer
                     className={styles['products__card-timer']}
-                    targetDate={new Date(products[0].date)}
+                    targetDate={
+                      products[0].date ? new Date(products[0].date) : addDays(new Date(), 4)
+                    }
                   />
 
                   <div className={styles['products__card-price']}>
@@ -176,7 +179,9 @@ export default function Home() {
 
                   <CountdownTimer
                     className={styles['products__card-timer']}
-                    targetDate={new Date(products[1].date)}
+                    targetDate={
+                      products[1].date ? new Date(products[1].date) : addDays(new Date(), 4)
+                    }
                   />
 
                   <div className={styles['products__card-price']}>
