@@ -13,18 +13,17 @@ import type { Product } from '@/types';
 import { addDays } from 'date-fns';
 
 export default function Home() {
-  const stateProducts = useSelector((state) => state.products);
+  const discountProducts = useSelector((state) => state.discountProducts);
 
   const [isLoadedWindow, setIsLoadedWindow] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    if (products.length) {
+    if (discountProducts.length) {
+      setProducts(discountProducts);
       setIsLoadedWindow(true);
     }
-
-    setProducts(stateProducts);
-  }, [stateProducts, products.length]);
+  }, [discountProducts]);
 
   return (
     <Layout>
