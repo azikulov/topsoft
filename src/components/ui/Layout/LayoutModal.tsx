@@ -24,7 +24,7 @@ export function LayoutModal({ hidden, onClose }: LayoutModalProps) {
     // Отправка данных на почту
     await sendMail({
       to: adminEmail,
-      html: `<p>Phone ${data.phone}</p><p>Name: ${data.name}</p>`,
+      html: `<p>Phone ${data.phone}</p><br/><p>Name: ${data.name}</p>`,
       subject: ' ',
       text: ' ',
     });
