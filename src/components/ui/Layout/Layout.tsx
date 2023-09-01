@@ -45,7 +45,7 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
   ]);
 
   return hidden ? (
-    <>{children}</>
+    <></>
   ) : (
     <div className={styles.layout}>
       <header className={styles.header}>
