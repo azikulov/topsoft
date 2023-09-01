@@ -14,19 +14,16 @@ import { addDays } from 'date-fns';
 
 export default function Home() {
   const discountProducts = useSelector((state) => state.discountProducts);
-
-  const [isLoadedWindow, setIsLoadedWindow] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     if (discountProducts.length) {
       setProducts(discountProducts);
-      setIsLoadedWindow(true);
     }
   }, [discountProducts]);
 
   return (
-    <Layout hidden={!isLoadedWindow}>
+    <Layout>
       <>
         <Carousel>
           <CarouselCard
