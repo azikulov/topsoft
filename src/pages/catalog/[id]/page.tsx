@@ -107,7 +107,7 @@ export default function CatalogID() {
         data.email
       );
 
-      window.open(paymentResponse.PaymentURL);
+      location.pathname = paymentResponse.PaymentURL;
       return;
     }
 
@@ -137,7 +137,7 @@ export default function CatalogID() {
     // Инициируем платеж и получаем ссылку для оплаты
     const paymentResponse = await initiatePayment(orderId, price, currentProduct.title, data.email);
 
-    window.open(paymentResponse.PaymentURL);
+    location.pathname = paymentResponse.PaymentURL;
   }
 
   useEffect(() => {
