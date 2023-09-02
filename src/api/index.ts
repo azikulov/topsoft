@@ -11,7 +11,7 @@ import type {
 } from './types';
 
 const api = axios.create({
-  baseURL: `https://topsoft-server.onrender.com/`,
+  baseURL: `https://api.topsoft.pro/`,
   // baseURL: `http://localhost:5000/`,
   timeout: 5000,
   headers: {
