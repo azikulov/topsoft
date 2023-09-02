@@ -219,7 +219,7 @@ export async function initiatePayment(
       OrderId: orderId,
       Description: description, // Описание платежа
       // SuccessURL: 'https://topsoft.pro/payment/' + orderId, // URL для успешного платежа
-      SuccessURL: 'http://localhost:3001/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
+      SuccessURL: 'http://topsoft.pro/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
       FailURL: 'https://topsoft.pro/rates', // URL для неуспешного платежа
     };
 
