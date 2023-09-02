@@ -68,6 +68,8 @@ export default function CatalogID() {
 
     setIsBuying(true);
 
+    const buyLink = document.querySelector('#buy-link') as HTMLAnchorElement;
+
     const notSaleKey = await getNotSaleKey();
     // Генерируем случайный номер заказа и получаем цену продукта
     const orderId = generateRandomOrderId();
@@ -110,8 +112,8 @@ export default function CatalogID() {
         data.email
       );
 
-      window.open(paymentResponse.PaymentURL);
-      setIsBuying(false);
+      buyLink.href = paymentResponse.PaymentURL;
+      buyLink.click();
 
       return;
     }
@@ -142,7 +144,8 @@ export default function CatalogID() {
     // Инициируем платеж и получаем ссылку для оплаты
     const paymentResponse = await initiatePayment(orderId, price, currentProduct.title, data.email);
 
-    window.open(paymentResponse.PaymentURL);
+    buyLink.href = paymentResponse.PaymentURL;
+    buyLink.click();
 
     setIsBuying(false);
   }
@@ -277,6 +280,8 @@ export default function CatalogID() {
                     required
                   />
                 </div>
+
+                <a href='#' id='buy-link' hidden></a>
 
                 {!isBuying ? (
                   <button type='submit' className={styles['product__button']}>
