@@ -32,6 +32,7 @@ export default function CatalogID() {
   const [currentTab, setCurrentTab] = useState<CurrentTab>('description');
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [isLoadedWindow, setIsLoadedWindow] = useState<boolean>(false);
+  const [isBuying, setIsBuying] = useState<boolean>(false);
 
   const handleToggleModal = () => setIsOpenModal((prevState) => !prevState);
   const handleSelectTab = (tab: CurrentTab) => setCurrentTab(tab);
@@ -64,6 +65,8 @@ export default function CatalogID() {
     if (!currentProduct) {
       return;
     }
+
+    setIsBuying(true);
 
     const notSaleKey = await getNotSaleKey();
     // Генерируем случайный номер заказа и получаем цену продукта
@@ -107,7 +110,9 @@ export default function CatalogID() {
         data.email
       );
 
-      location.pathname = paymentResponse.PaymentURL;
+      window.open(paymentResponse.PaymentURL);
+      setIsBuying(false);
+
       return;
     }
 
@@ -137,7 +142,9 @@ export default function CatalogID() {
     // Инициируем платеж и получаем ссылку для оплаты
     const paymentResponse = await initiatePayment(orderId, price, currentProduct.title, data.email);
 
-    location.pathname = paymentResponse.PaymentURL;
+    window.open(paymentResponse.PaymentURL);
+
+    setIsBuying(false);
   }
 
   useEffect(() => {
@@ -271,9 +278,15 @@ export default function CatalogID() {
                   />
                 </div>
 
-                <button type='submit' className={styles['product__button']}>
-                  Купить
-                </button>
+                {!isBuying ? (
+                  <button type='submit' className={styles['product__button']}>
+                    Купить
+                  </button>
+                ) : (
+                  <button type='button' disabled className={styles['product__button']}>
+                    Загрузка...
+                  </button>
+                )}
               </form>
 
               <div className={styles['product__information']}>
