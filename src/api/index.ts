@@ -12,6 +12,7 @@ import type {
 
 const api = axios.create({
   baseURL: `https://topsoft-server.onrender.com/`,
+  // baseURL: `http://localhost:5000/`,
   timeout: 5000,
   headers: {
     'Access-Control-Allow-Origin': '*',
@@ -144,10 +145,10 @@ export async function getOrders(): Promise<Order[] | void> {
   }
 }
 
-export async function createOrder(
-  order: Omit<Order, 'id'>,
-  { key, trashKey }: { key?: Key; trashKey?: Key }
-): CreateOrder {
+type OrderParam = Omit<Order, 'id'>;
+type KeyParam = { key?: Key; trashKey?: Key };
+
+export async function createOrder(order: OrderParam, { key, trashKey }: KeyParam): CreateOrder {
   try {
     const response = await api.post(`/api/orders`, { order, key, trashKey });
 
@@ -155,6 +156,16 @@ export async function createOrder(
   } catch (e) {
     console.log(`An error has occurred!\nPath: src/api/index.ts:createOrder`);
     console.log(e);
+  }
+}
+
+export async function updateOrder(id: number, status: string, email: string) {
+  try {
+    const response = await api.put(`api/orders/${id}`, { status, email });
+
+    if (response.status === 201) return response.data;
+  } catch (e) {
+    console.log(`An error has occurred!\nPath: src/api/index.ts:updateOrder`);
   }
 }
 
@@ -183,5 +194,58 @@ export async function getDiscountProducts(): Promise<Product[]> {
     console.log(`An error has occurred!\nPath: src/api/index.ts:getProducts`);
 
     return [];
+  }
+}
+
+export async function initiatePayment(
+  orderId: string,
+  amount: number,
+  description: string,
+  email: string
+) {
+  /* 
+    orderId: id заказа;
+    amount: сумма в рублях;
+  */
+
+  try {
+    const apiUrl = 'https://securepay.tinkoff.ru/v2/Init'; // URL API Тинькофф
+    const terminalKey = '1692273866873DEMO';
+
+    // Подготавливаем данные для запроса
+    const requestData = {
+      TerminalKey: terminalKey,
+      Amount: amount * 100, // Сумма в копейках
+      OrderId: orderId,
+      Description: description, // Описание платежа
+      // SuccessURL: 'https://topsoft.pro/payment/' + orderId, // URL для успешного платежа
+      SuccessURL: 'http://localhost:3001/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
+      FailURL: 'https://topsoft.pro/rates', // URL для неуспешного платежа
+    };
+
+    const response = await axios.post(apiUrl, requestData);
+
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при отправке запроса на оплату: ', error);
+    return null;
+  }
+}
+
+export async function getPaymentStatus(orderId: string) {
+  try {
+    const apiUrl = 'https://securepay.tinkoff.ru/v2/GetState'; // URL API Тинькофф
+    const terminalKey = '1692273866873DEMO'; // Ваш API-ключ Тинькофф
+
+    const requestData = {
+      TerminalKey: terminalKey,
+      PaymentId: orderId, // Идентификатор платежа (orderId)
+    };
+
+    const response = await axios.post(apiUrl, requestData);
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при отправке запроса на статус платежа: ', error);
+    return null;
   }
 }

@@ -17,6 +17,7 @@ import AdminProductsID from './pages/admin/products/[id]/page';
 import AdminKeys from './pages/admin/keys/page';
 import AdminTrashKeys from './pages/admin/trash-keys/page';
 import AdminOrders from './pages/admin/orders/page';
+import PaymentOrderId from './pages/payment/[orderId]/page';
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: '/answers',
         element: <Answers />,
+      },
+      {
+        path: '/payment/:orderId',
+        element: <PaymentOrderId />,
       },
     ],
   },

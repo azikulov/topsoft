@@ -12,12 +12,13 @@ import { Loading } from '@/components/shared/Loading';
 import { Help } from '@/components/shared/Help';
 import { Rates } from '@/components/shared/Rates';
 import { useSelector } from '@/hooks/useSelector';
-import { createOrder, getKeys, getTrashKeys, sendMail } from '@/api';
+import { createOrder, getKeys, getTrashKeys, initiatePayment, sendMail } from '@/api';
 import { adminEmail } from '@/config';
 import { useActions } from '@/hooks/useActions';
 import styles from './page.module.scss';
 import type { Product } from '@/types';
 import type { CurrentTab } from './types';
+import { generateRandomOrderId } from '@/utils/generateRandomOrderId';
 
 export default function CatalogID() {
   const params = useParams();
@@ -27,18 +28,13 @@ export default function CatalogID() {
 
   const { register, handleSubmit } = useForm<{ email: string }>();
 
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-  const [currentTab, setCurrentTab] = useState<CurrentTab>('description');
   const [currentProduct, setCurrentProduct] = useState<Product>();
+  const [currentTab, setCurrentTab] = useState<CurrentTab>('description');
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [isLoadedWindow, setIsLoadedWindow] = useState<boolean>(false);
 
-  function handleToggleModal() {
-    setIsOpenModal((prevState) => !prevState);
-  }
-
-  function handleSelectTab(tab: 'description' | 'how to buy' | 'system requirements') {
-    setCurrentTab(tab);
-  }
+  const handleToggleModal = () => setIsOpenModal((prevState) => !prevState);
+  const handleSelectTab = (tab: CurrentTab) => setCurrentTab(tab);
 
   function handleScrollToRates() {
     const rates = document.getElementById('rates');
@@ -61,80 +57,87 @@ export default function CatalogID() {
     return undefined;
   }
 
-  async function handleBuyProduct(data: { email: string }, e: any) {
+  async function handleBuyProduct(data: any, e: any) {
     e.preventDefault();
 
-    if (!currentProduct) return;
-
-    (window as any).TinkoffWidget.pay(e.target);
+    // Проверяем наличие выбранного продукта
+    if (!currentProduct) {
+      return;
+    }
 
     const notSaleKey = await getNotSaleKey();
+    // Генерируем случайный номер заказа и получаем цену продукта
+    const orderId = generateRandomOrderId();
+    const price = Number(currentProduct.newPrice.trim().replace(' ', '').replace('₽', ''));
 
-    if (notSaleKey) {
-      const message = `<b>Ваш ключ: ${notSaleKey.content}</b>`;
-      const response = await sendMail({
-        to: data.email,
-        html: message,
-        subject: ' ',
-        text: ' ',
-      });
+    if (!notSaleKey) {
+      // Создаем ордер если нету активных ключей
+      const trashKeysResponse = await getTrashKeys();
 
-      await createOrder(
-        {
-          email: data.email,
-          key: notSaleKey.content,
-          time: dayjs().format('DD-MM-YYYY HH:mm'),
-          title: currentProduct.title,
-        },
-        { key: { ...notSaleKey, status: 'Продан' } }
-      );
+      if (!trashKeysResponse) {
+        return;
+      }
 
-      if (response && response.message === 'An error has occurred!')
-        console.log('Почта не отправлена!');
-
-      await sendMail({
-        to: adminEmail,
-        html: `<b>Почта: </b> ${
-          data.email
-        }<br/><b>Время: </b> ${'time'}<br/><b>Название продукта: </b> ${currentProduct.title}`,
-        subject: ' ',
-        text: ' ',
-      });
-    } else {
-      const response = await getTrashKeys();
-
-      if (!response) return;
-
-      const trashKeys = response.filter(
+      // Находим неверный ключ для текущего продукта
+      const trashKeys = trashKeysResponse.find(
         (item) => item.title.trim().toLowerCase() === currentProduct.title.trim().toLowerCase()
-      )[0];
-
-      const message = `<b>Ваш ключ: ${trashKeys.content}</b>`;
-      await sendMail({
-        to: data.email,
-        html: message,
-        subject: ' ',
-        text: ' ',
-      });
-
-      await sendMail({
-        to: adminEmail,
-        html: '<b>Юзеру такой то неверный ключ отправлен: </b>' + trashKeys.content,
-        subject: ' ',
-        text: ' ',
-      });
-
-      await createOrder(
-        {
-          email: data.email,
-          key: trashKeys.content,
-          time: dayjs().format('DD-MM-YYYY HH:mm'),
-          title: currentProduct.title,
-          trashKey: true,
-        },
-        { trashKey: trashKeys }
       );
+
+      if (trashKeys) {
+        // Создаем заказ с пометкой "неверный ключ"
+        await createOrder(
+          {
+            orderId,
+            email: data.email,
+            key: trashKeys.content,
+            time: dayjs().format('DD-MM-YYYY HH:mm'),
+            title: currentProduct.title,
+            trashKey: true,
+            status: 'Не оплачено',
+          },
+          { trashKey: trashKeys }
+        );
+      }
+
+      // Инициируем платеж и получаем ссылку для оплаты
+      const paymentResponse = await initiatePayment(
+        orderId,
+        price,
+        currentProduct.title,
+        data.email
+      );
+
+      window.open(paymentResponse.PaymentURL);
+      return;
     }
+
+    // Создаем заказ и помечаем ключ как проданный
+    await createOrder(
+      {
+        orderId,
+        email: data.email,
+        key: notSaleKey.content,
+        time: dayjs().format('DD-MM-YYYY HH:mm'),
+        title: currentProduct.title,
+        status: 'Не оплачено',
+      },
+      { key: { ...notSaleKey, status: 'Продан' } }
+    );
+
+    // Отправляем уведомление администратору о продаже
+    await sendMail({
+      to: adminEmail,
+      html: `<b>Почта: </b> ${data.email}<br/><b>Время: </b> ${dayjs().format(
+        'DD-MM-YYYY HH:mm'
+      )}<br/><b>Название продукта: </b> ${currentProduct.title}`,
+      subject: ' ',
+      text: ' ',
+    });
+
+    // Инициируем платеж и получаем ссылку для оплаты
+    const paymentResponse = await initiatePayment(orderId, price, currentProduct.title, data.email);
+
+    window.open(paymentResponse.PaymentURL);
   }
 
   useEffect(() => {
@@ -246,12 +249,12 @@ export default function CatalogID() {
                   style={currentProduct.supportVersion ? {} : { marginTop: 0 }}
                   className={styles['product__form-price']}
                 >
-                  <p>{currentProduct.oldPrice || '1 390 ₽'}</p>
+                  <p>{currentProduct.oldPrice}</p>
 
                   <div>
-                    <p>{currentProduct.newPrice || '1 190 ₽'}</p>
+                    <p>{currentProduct.newPrice}</p>
 
-                    <span>{currentProduct.discount || '— 10%'}</span>
+                    <span>{currentProduct.discount}</span>
                   </div>
                 </h1>
 
@@ -259,20 +262,6 @@ export default function CatalogID() {
                   <p className={styles['product__field-title']}>
                     После оплаты код придёт на указанную почту
                   </p>
-                  {/* Tinkoff */}
-                  <input type='hidden' name='terminalkey' value='1692273866873DEMO' />
-                  <input type='hidden' name='frame' value='true' />
-                  <input type='hidden' name='language' value='ru' />
-                  <input
-                    type='hidden'
-                    placeholder='Сумма заказа'
-                    name='amount'
-                    value={(currentProduct.newPrice || '1 190 ₽')
-                      .trim()
-                      .replace(' ', '')
-                      .replace('₽', '')}
-                    required
-                  />
 
                   <input
                     type='email'

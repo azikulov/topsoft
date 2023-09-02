@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { addDays } from 'date-fns';
 
 import { Carousel, CarouselCard } from '@/components/shared/Carousel';
 import { Advantages } from '@/components/shared/Advantages';
@@ -10,7 +11,6 @@ import { CountdownTimer } from '@/components/ui/CountdownTimer';
 import styles from './page.module.scss';
 import { useSelector } from '@/hooks/useSelector';
 import type { Product } from '@/types';
-import { addDays } from 'date-fns';
 
 export default function Home() {
   const discountProducts = useSelector((state) => state.discountProducts);

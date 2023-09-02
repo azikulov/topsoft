@@ -1,7 +1,6 @@
 import { renderToString } from 'react-dom/server';
-import type { Product } from '@/types';
 
-export const localProducts: Product[] = [
+export const localProducts = [
   {
     id: 16,
     title: 'Microsoft Office 365 Professional Plus',

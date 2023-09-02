@@ -19,10 +19,10 @@ export interface Product {
   description: string;
   questionAnswer: Question[];
   recommendations: Recommendations[];
-  newPrice?: string;
-  oldPrice?: string;
-  discount?: string;
-  instructionId?: number;
+  newPrice: string;
+  oldPrice: string;
+  discount: string;
+  instructionId: number;
   date?: Date | string;
   information?: {
     typeOfDelivery: string;
@@ -45,9 +45,11 @@ export interface Key {
 
 export interface Order {
   id: number;
+  orderId?: string;
   title: string;
   email: string;
   key: string;
   trashKey?: boolean;
   time: string;
+  status?: 'Оплачено' | 'Не оплачено';
 }

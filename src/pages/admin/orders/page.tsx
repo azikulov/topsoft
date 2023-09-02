@@ -90,6 +90,7 @@ export default function AdminOrders() {
                   <th>Ключ</th>
                   <th>Почта</th>
                   <th>Время</th>
+                  <th>Статус</th>
                 </tr>
               </thead>
               <tbody>
@@ -102,6 +103,7 @@ export default function AdminOrders() {
                       </td>
                       <td>{item.email}</td>
                       <td>{item.time}</td>
+                      <td>{item.status}</td>
                     </tr>
                   ))
                 ) : (
