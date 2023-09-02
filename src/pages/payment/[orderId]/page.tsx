@@ -12,7 +12,7 @@ export default function PaymentOrderId() {
       if (!orders) return;
 
       const order = orders.filter((order) => String(order.orderId) === String(params.orderId))[0];
-      updateOrder(order.id, 'Оплачено', query.get('email') as string).then(() => {
+      updateOrder(String(order.orderId), 'Оплачено', query.get('email') as string).then(() => {
         navigate('/');
       });
     });

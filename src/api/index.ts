@@ -11,8 +11,8 @@ import type {
 } from './types';
 
 const api = axios.create({
-  baseURL: `https://topsoft-server.onrender.com/`,
-  // baseURL: `http://localhost:5000/`,
+  // baseURL: `https://topsoft-server.onrender.com/`,
+  baseURL: `http://localhost:5000/`,
   timeout: 5000,
   headers: {
     'Access-Control-Allow-Origin': '*',
@@ -159,9 +159,9 @@ export async function createOrder(order: OrderParam, { key, trashKey }: KeyParam
   }
 }
 
-export async function updateOrder(id: number, status: string, email: string) {
+export async function updateOrder(orderId: string, status: string, email: string) {
   try {
-    const response = await api.put(`api/orders/${id}`, { status, email });
+    const response = await api.put(`api/orders/${orderId}`, { status, email });
 
     if (response.status === 201) return response.data;
   } catch (e) {
