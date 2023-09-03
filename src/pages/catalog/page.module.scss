@@ -152,6 +152,14 @@
 
       border-radius: 0.375rem;
       background: #e3e4ff;
+
+      transition: 200ms ease;
+
+      &:hover,
+      &:focus {
+        background: #8282dd;
+        color: #fff;
+      }
     }
   }
 
