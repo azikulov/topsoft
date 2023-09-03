@@ -98,6 +98,15 @@
       font-weight: 500;
       line-height: 130%; /* 18.2px */
       white-space: nowrap;
+
+      span {
+        border-bottom: 1px solid #fff;
+        transition: 200ms ease;
+
+        &:hover {
+          border-bottom-color: #8282dd;
+        }
+      }
     }
   }
 }
@@ -285,6 +294,14 @@
       padding: 0.75rem;
       margin-top: auto;
       margin-bottom: 0;
+
+      transition: 200ms ease;
+
+      &:hover,
+      &:focus {
+        background: #8282dd;
+        color: #fff;
+      }
     }
   }
 }
@@ -396,6 +413,14 @@
       padding: 0.75rem;
       margin-top: auto;
       margin-bottom: 0;
+
+      transition: 200ms ease;
+
+      &:hover,
+      &:focus {
+        background: #8282dd;
+        color: #fff;
+      }
     }
   }
 

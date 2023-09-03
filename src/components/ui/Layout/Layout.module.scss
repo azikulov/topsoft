@@ -225,6 +225,13 @@
       font-size: 0.875rem;
       font-weight: 400;
       line-height: 150%; /* 21px */
+
+      border-bottom: 1px solid #fff;
+      transition: 200ms ease;
+
+      &:hover {
+        border-bottom-color: #0b0b0b;
+      }
     }
   }
 

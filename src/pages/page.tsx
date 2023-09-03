@@ -49,7 +49,7 @@ export default function Home() {
                 to='/catalog?nav=microsoft-windows'
                 className={styles['software-categories__card-link']}
               >
-                Подробнее →
+                <span>Подробнее</span> →
               </Link>
             </div>
 
@@ -67,7 +67,7 @@ export default function Home() {
                 to='/catalog?nav=microsoft-office-365'
                 className={styles['software-categories__card-link']}
               >
-                Подробнее →
+                <span>Подробнее</span> →
               </Link>
             </div>
 
@@ -86,7 +86,7 @@ export default function Home() {
                 to='/catalog?nav=office-for-windows'
                 className={styles['software-categories__card-link']}
               >
-                Подробнее →
+                <span>Подробнее</span> →
               </Link>
             </div>
 
@@ -105,7 +105,7 @@ export default function Home() {
                 to='/catalog?nav=office-for-macos'
                 className={styles['software-categories__card-link']}
               >
-                Подробнее →
+                <span>Подробнее</span> →
               </Link>
             </div>
           </div>
