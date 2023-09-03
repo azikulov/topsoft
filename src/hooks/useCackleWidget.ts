@@ -16,7 +16,7 @@ const useCackleWidget = () => {
 
     // Инициализация cackle_widget массива
     (window as any).cackle_widget = (window as any).cackle_widget || [];
-    (window as any).cackle_widget.push({ widget: 'Review', id: 80653 });
+    (window as any).cackle_widget.push({ widget: 'Review', id: 80653, channel: 'rates' });
 
     // Очистка при размонтировании
     return () => {
