@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom';
 import styles from './Layout.module.scss';
 import { useSelector } from '@/hooks/useSelector';
 import { useActions } from '@/hooks/useActions';
-import { getDiscountProducts, getKeys, getProducts } from '@/api';
+import { getKeys, getProducts } from '@/api';
 import { LayoutModal } from './LayoutModal';
 
 export function Layout({ children, hidden }: { children: React.ReactNode; hidden?: boolean }) {
-  const { saveProducts, saveKeys, saveDiscountProducts } = useActions();
+  const { saveProducts, saveKeys } = useActions();
   const products = useSelector((state) => state.products);
   const keys = useSelector((state) => state.keys);
-  const discountProducts = useSelector((state) => state.discountProducts);
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -30,19 +29,7 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
       getKeys().then((keys) => {
         if (keys) saveKeys(keys);
       });
-
-    if (!discountProducts.length)
-      getDiscountProducts().then((discountProducts) => {
-        if (discountProducts) saveDiscountProducts(discountProducts);
-      });
-  }, [
-    saveProducts,
-    products.length,
-    saveKeys,
-    keys.length,
-    saveDiscountProducts,
-    discountProducts.length,
-  ]);
+  }, [saveProducts, products.length, saveKeys, keys.length]);
 
   return hidden ? (
     <>{children}</>

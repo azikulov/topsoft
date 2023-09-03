@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { addDays } from 'date-fns';
 
@@ -10,17 +9,13 @@ import { Collapse } from '@/components/ui/Collapse';
 import { CountdownTimer } from '@/components/ui/CountdownTimer';
 import styles from './page.module.scss';
 import { useSelector } from '@/hooks/useSelector';
-import type { Product } from '@/types';
 
 export default function Home() {
-  const discountProducts = useSelector((state) => state.discountProducts);
-  const [products, setProducts] = useState<Product[]>([]);
+  const products = useSelector((state) => state.products);
 
-  useEffect(() => {
-    if (discountProducts.length) {
-      setProducts(discountProducts);
-    }
-  }, [discountProducts]);
+  function getProduct(id: string) {
+    return products.filter((product) => String(product.id) === id)[0];
+  }
 
   return (
     <Layout>
@@ -124,36 +119,36 @@ export default function Home() {
             <div className={styles['products__cards']}>
               <div className={styles['products__card']}>
                 <div className={styles['products__card-image']}>
-                  <Link to={'/catalog/' + products[0].id}>
-                    <img src={products[0].image} alt='' />
+                  <Link to={'/catalog/' + getProduct('15').id}>
+                    <img src={getProduct('15').image} alt='' />
                   </Link>
                 </div>
 
                 <div className={styles['products__card-content']}>
                   <h1 className={styles['products__card-title']}>
-                    <Link to={'/catalog/' + products[0].id}>{products[0].title}</Link>
+                    <Link to={'/catalog/' + getProduct('15').id}>{getProduct('15').title}</Link>
                   </h1>
 
                   <CountdownTimer
                     className={styles['products__card-timer']}
-                    targetDate={
-                      products[0].date ? new Date(products[0].date) : addDays(new Date(), 4)
-                    }
+                    targetDate={addDays(new Date(), 4)}
                   />
 
                   <div className={styles['products__card-price']}>
-                    <p className={styles['products__card-price_new']}>{products[0].newPrice}</p>
+                    <p className={styles['products__card-price_new']}>
+                      {getProduct('15').newPrice}
+                    </p>
 
                     <div>
                       <p className={styles['products__card-price_initial']}>
-                        {products[0].oldPrice}
+                        {getProduct('15').oldPrice}
                       </p>
-                      <span>{products[0].discount}</span>
+                      <span>{getProduct('15').discount}</span>
                     </div>
                   </div>
 
                   <Link
-                    to={'/catalog/' + products[0].id}
+                    to={'/catalog/' + getProduct('15').id}
                     className={styles['products__card-button']}
                   >
                     Подробнее
@@ -163,36 +158,34 @@ export default function Home() {
 
               <div className={styles['products__card']}>
                 <div className={styles['products__card-image']}>
-                  <Link to={'/catalog/' + products[1].id}>
-                    <img src={products[1].image} alt='' />
+                  <Link to={'/catalog/' + getProduct('6').id}>
+                    <img src={getProduct('6').image} alt='' />
                   </Link>
                 </div>
 
                 <div className={styles['products__card-content']}>
                   <h1 className={styles['products__card-title']}>
-                    <Link to={'/catalog/' + products[1].id}>{products[1].title}</Link>
+                    <Link to={'/catalog/' + getProduct('6').id}>{getProduct('6').title}</Link>
                   </h1>
 
                   <CountdownTimer
                     className={styles['products__card-timer']}
-                    targetDate={
-                      products[1].date ? new Date(products[1].date) : addDays(new Date(), 4)
-                    }
+                    targetDate={addDays(new Date(), 4)}
                   />
 
                   <div className={styles['products__card-price']}>
-                    <p className={styles['products__card-price_new']}>{products[1].newPrice}</p>
+                    <p className={styles['products__card-price_new']}>{getProduct('6').newPrice}</p>
 
                     <div>
                       <p className={styles['products__card-price_initial']}>
-                        {products[1].oldPrice}
+                        {getProduct('6').oldPrice}
                       </p>
-                      <span>{products[1].discount}</span>
+                      <span>{getProduct('6').discount}</span>
                     </div>
                   </div>
 
                   <Link
-                    to={'/catalog/' + products[1].id}
+                    to={'/catalog/' + getProduct('6').id}
                     className={styles['products__card-button']}
                   >
                     Подробнее

@@ -185,18 +185,6 @@ export async function sendMail(mail: { to: string; text: string; html: string; s
   }
 }
 
-export async function getDiscountProducts(): Promise<Product[]> {
-  try {
-    const response = await api.get('api/discounts-day');
-
-    return response.data;
-  } catch (e) {
-    console.log(`An error has occurred!\nPath: src/api/index.ts:getProducts`);
-
-    return [];
-  }
-}
-
 export async function initiatePayment(
   orderId: string,
   amount: number,

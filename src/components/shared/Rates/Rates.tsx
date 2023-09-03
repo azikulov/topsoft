@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useCackleWidget } from '@/hooks/useCackleWidget';
 import styles from './Rates.module.scss';
 
