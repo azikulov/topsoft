@@ -864,6 +864,14 @@
       padding: 0.75rem;
       margin-top: auto;
       margin-bottom: 0;
+
+      transition: 200ms ease;
+
+      &:hover,
+      &:focus {
+        background: #8282dd;
+        color: #fff;
+      }
     }
   }
 
