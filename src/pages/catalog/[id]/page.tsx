@@ -322,7 +322,7 @@ export default function CatalogID() {
                 <div className={styles['product__information-row']}>
                   <span>Дистрибутив</span>
                   <div></div>
-                  <Link to={'/#'}>Скачать и Установить</Link>
+                  <a href={currentProduct.distribution || '#'}>Скачать и Установить</a>
                 </div>
 
                 <div className={styles['product__information-row']}>
