@@ -11,8 +11,8 @@ import type {
 } from './types';
 
 const api = axios.create({
-  baseURL: `https://api.topsoft.pro/`,
-  // baseURL: `http://localhost:5000/`,
+  // baseURL: `https://api.topsoft.pro/`,
+  baseURL: `http://localhost:5000/`,
   timeout: 5000,
   headers: {
     'Access-Control-Allow-Origin': '*',
@@ -159,9 +159,14 @@ export async function createOrder(order: OrderParam, { key, trashKey }: KeyParam
   }
 }
 
-export async function updateOrder(orderId: string, status: string, email: string) {
+export async function updateOrder(
+  orderId: string,
+  status: string,
+  email: string,
+  product: Product
+) {
   try {
-    const response = await api.put(`api/orders/${orderId}`, { status, email });
+    const response = await api.put(`api/orders/${orderId}`, { status, email, product });
 
     if (response.status === 201) return response.data;
   } catch (e) {
@@ -206,8 +211,8 @@ export async function initiatePayment(
       Amount: amount * 100, // Сумма в копейках
       OrderId: orderId,
       Description: description, // Описание платежа
-      SuccessURL: 'https://topsoft.pro/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
-      // SuccessURL: 'http://localhost:3001/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
+      // SuccessURL: 'https://topsoft.pro/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
+      SuccessURL: 'http://localhost:3001/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
       FailURL: 'https://topsoft.pro/rates', // URL для неуспешного платежа
     };
 
