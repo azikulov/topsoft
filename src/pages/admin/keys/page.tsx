@@ -19,7 +19,6 @@ export default function AdminKeys() {
 
   const [filteredActivationKeys, setFilteredActivationKeys] = useState<Key[]>([]);
   const [pageState, setPageState] = useState({
-    // isLoading: true,
     isLoading: false,
     isError: false,
   });

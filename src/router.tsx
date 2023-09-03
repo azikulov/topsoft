@@ -18,6 +18,9 @@ import AdminKeys from './pages/admin/keys/page';
 import AdminTrashKeys from './pages/admin/trash-keys/page';
 import AdminOrders from './pages/admin/orders/page';
 import PaymentOrderId from './pages/payment/[orderId]/page';
+import Admin from './pages/admin/page';
+
+const isAuth = JSON.parse(localStorage.getItem('topsoft') as string)?.isAuth || false;
 
 export const router = createBrowserRouter([
   {
@@ -63,30 +66,41 @@ export const router = createBrowserRouter([
         path: '/payment/:orderId',
         element: <PaymentOrderId />,
       },
+      {
+        path: '/admin',
+        element: <Admin />,
+      },
     ],
   },
   {
-    children: [
-      {
-        path: '/admin/products',
-        element: <AdminProducts />,
-      },
-      {
-        path: '/admin/products/:id',
-        element: <AdminProductsID />,
-      },
-      {
-        path: '/admin/keys',
-        element: <AdminKeys />,
-      },
-      {
-        path: '/admin/trash-keys',
-        element: <AdminTrashKeys />,
-      },
-      {
-        path: '/admin/orders',
-        element: <AdminOrders />,
-      },
-    ],
+    children: isAuth
+      ? [
+          {
+            path: '/admin/products',
+            element: <AdminProducts />,
+          },
+          {
+            path: '/admin/products/:id',
+            element: <AdminProductsID />,
+          },
+          {
+            path: '/admin/keys',
+            element: <AdminKeys />,
+          },
+          {
+            path: '/admin/trash-keys',
+            element: <AdminTrashKeys />,
+          },
+          {
+            path: '/admin/orders',
+            element: <AdminOrders />,
+          },
+        ]
+      : [
+          {
+            path: '/admin/*',
+            element: <Navigate to='/admin' />,
+          },
+        ],
   },
 ]);
