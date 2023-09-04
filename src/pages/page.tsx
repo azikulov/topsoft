@@ -117,81 +117,95 @@ export default function Home() {
             <p className={styles['products__subtitle']}>Скидка на специальные товары</p>
 
             <div className={styles['products__cards']}>
-              <div className={styles['products__card']}>
-                <div className={styles['products__card-image']}>
-                  <Link to={'/catalog/' + getProduct('15').id}>
-                    <img src={getProduct('15').image} alt='' />
-                  </Link>
-                </div>
+              {(function () {
+                const product = getProduct('15');
 
-                <div className={styles['products__card-content']}>
-                  <h1 className={styles['products__card-title']}>
-                    <Link to={'/catalog/' + getProduct('15').id}>{getProduct('15').title}</Link>
-                  </h1>
+                if (!product) return;
 
-                  <CountdownTimer
-                    className={styles['products__card-timer']}
-                    targetDate={addDays(new Date(), 4)}
-                  />
+                return (
+                  <div className={styles['products__card']}>
+                    <div className={styles['products__card-image']}>
+                      <Link to={'/catalog/' + product.id}>
+                        <img src={product.image} alt='' />
+                      </Link>
+                    </div>
 
-                  <div className={styles['products__card-price']}>
-                    <p className={styles['products__card-price_new']}>
-                      {getProduct('15').newPrice}
-                    </p>
+                    <div className={styles['products__card-content']}>
+                      <h1 className={styles['products__card-title']}>
+                        <Link to={'/catalog/' + product.id}>{product.title}</Link>
+                      </h1>
 
-                    <div>
-                      <p className={styles['products__card-price_initial']}>
-                        {getProduct('15').oldPrice}
-                      </p>
-                      <span>{getProduct('15').discount}</span>
+                      <CountdownTimer
+                        className={styles['products__card-timer']}
+                        targetDate={addDays(new Date(), 4)}
+                      />
+
+                      <div className={styles['products__card-price']}>
+                        <p className={styles['products__card-price_new']}>{product.newPrice}</p>
+
+                        <div>
+                          <p className={styles['products__card-price_initial']}>
+                            {product.oldPrice}
+                          </p>
+                          <span>{product.discount}</span>
+                        </div>
+                      </div>
+
+                      <Link
+                        to={'/catalog/' + product.id}
+                        className={styles['products__card-button']}
+                      >
+                        Подробнее
+                      </Link>
                     </div>
                   </div>
+                );
+              })()}
 
-                  <Link
-                    to={'/catalog/' + getProduct('15').id}
-                    className={styles['products__card-button']}
-                  >
-                    Подробнее
-                  </Link>
-                </div>
-              </div>
+              {(function () {
+                const product = getProduct('5');
 
-              <div className={styles['products__card']}>
-                <div className={styles['products__card-image']}>
-                  <Link to={'/catalog/' + getProduct('6').id}>
-                    <img src={getProduct('6').image} alt='' />
-                  </Link>
-                </div>
+                if (!product) return;
 
-                <div className={styles['products__card-content']}>
-                  <h1 className={styles['products__card-title']}>
-                    <Link to={'/catalog/' + getProduct('6').id}>{getProduct('6').title}</Link>
-                  </h1>
+                return (
+                  <div className={styles['products__card']}>
+                    <div className={styles['products__card-image']}>
+                      <Link to={'/catalog/' + product.id}>
+                        <img src={product.image} alt='' />
+                      </Link>
+                    </div>
 
-                  <CountdownTimer
-                    className={styles['products__card-timer']}
-                    targetDate={addDays(new Date(), 4)}
-                  />
+                    <div className={styles['products__card-content']}>
+                      <h1 className={styles['products__card-title']}>
+                        <Link to={'/catalog/' + product.id}>{product.title}</Link>
+                      </h1>
 
-                  <div className={styles['products__card-price']}>
-                    <p className={styles['products__card-price_new']}>{getProduct('6').newPrice}</p>
+                      <CountdownTimer
+                        className={styles['products__card-timer']}
+                        targetDate={addDays(new Date(), 4)}
+                      />
 
-                    <div>
-                      <p className={styles['products__card-price_initial']}>
-                        {getProduct('6').oldPrice}
-                      </p>
-                      <span>{getProduct('6').discount}</span>
+                      <div className={styles['products__card-price']}>
+                        <p className={styles['products__card-price_new']}>{product.newPrice}</p>
+
+                        <div>
+                          <p className={styles['products__card-price_initial']}>
+                            {product.oldPrice}
+                          </p>
+                          <span>{product.discount}</span>
+                        </div>
+                      </div>
+
+                      <Link
+                        to={'/catalog/' + product.id}
+                        className={styles['products__card-button']}
+                      >
+                        Подробнее
+                      </Link>
                     </div>
                   </div>
-
-                  <Link
-                    to={'/catalog/' + getProduct('6').id}
-                    className={styles['products__card-button']}
-                  >
-                    Подробнее
-                  </Link>
-                </div>
-              </div>
+                );
+              })()}
             </div>
           </div>
         )}
@@ -200,75 +214,97 @@ export default function Home() {
           <h1 className={styles['best-offers__title']}>Лучшие предложения</h1>
 
           <div className={styles['best-offers__cards']}>
-            <Link to='/catalog/5' className={styles['best-offers__card']}>
-              <div className={styles['best-offers__card-image']}>
-                <img src={'/assets/images/products/Обложка-Windows-11-Home.webp'} alt='' />
-              </div>
+            {(function () {
+              const product = getProduct('5');
 
-              <h1 className={styles['best-offers__card-title']}>Windows 11 Home</h1>
-              <p className={styles['best-offers__card-description']}>
-                Популярная операционная система, впитавшая в себя самое лучшее
-              </p>
-              <p className={styles['best-offers__card-price']}>1 890 ₽</p>
+              if (!product) return;
 
-              <button className={styles['best-offers__card-button']}>Подробнее</button>
-            </Link>
+              return (
+                <Link to={'/catalog/' + product.id} className={styles['best-offers__card']}>
+                  <div className={styles['best-offers__card-image']}>
+                    <img src={product.image} alt='' />
+                  </div>
 
-            <Link to='/catalog/12' className={styles['best-offers__card']}>
-              <div className={styles['best-offers__card-image']}>
-                <img
-                  src={
-                    '/assets/images/products/Обложка-Office-2019-Professional-Plus-(Windows).webp'
-                  }
-                  alt=''
-                />
-              </div>
+                  <h1 className={styles['best-offers__card-title']}>{product.title}</h1>
+                  <p className={styles['best-offers__card-description']}>
+                    Популярная операционная система, впитавшая в себя самое лучшее
+                  </p>
+                  <p className={styles['best-offers__card-price']}>{product.newPrice}</p>
 
-              <h1 className={styles['best-offers__card-title']}>
-                Microsoft Office 2019 Professional Plus
-              </h1>
-              <p className={styles['best-offers__card-description']}>
-                Офисный пакет приложений для работы с различными типами документов
-              </p>
-              <p className={styles['best-offers__card-price']}>1 890 ₽</p>
+                  <button className={styles['best-offers__card-button']}>Подробнее</button>
+                </Link>
+              );
+            })()}
 
-              <button className={styles['best-offers__card-button']}>Подробнее</button>
-            </Link>
+            {(function () {
+              const product = getProduct('12');
 
-            <Link to='/catalog/3' className={styles['best-offers__card']}>
-              <div className={styles['best-offers__card-image']}>
-                <img src={'/assets/images/products/Обложка-Windows-10-Home.webp'} alt='' />
-              </div>
+              if (!product) return;
 
-              <h1 className={styles['best-offers__card-title']}>Windows 10 Home</h1>
-              <p className={styles['best-offers__card-description']}>
-                Популярная операционная система, впитавшая в себя самое лучшее
-              </p>
-              <p className={styles['best-offers__card-price']}>1 890 ₽</p>
+              return (
+                <Link to={'/catalog/' + product.id} className={styles['best-offers__card']}>
+                  <div className={styles['best-offers__card-image']}>
+                    <img src={product.image} alt='' />
+                  </div>
 
-              <button className={styles['best-offers__card-button']}>Подробнее</button>
-            </Link>
+                  <h1 className={styles['best-offers__card-title']}>
+                    {product.title.replace(' С привязкой', '')}
+                  </h1>
+                  <p className={styles['best-offers__card-description']}>
+                    Офисный пакет приложений для работы с различными типами документов
+                  </p>
+                  <p className={styles['best-offers__card-price']}>{product.newPrice}</p>
 
-            <Link to='/catalog/9' className={styles['best-offers__card']}>
-              <div className={styles['best-offers__card-image']}>
-                <img
-                  src={
-                    '/assets/images/products/Обложка-Office-2016-Professional-Plus-(Windows).webp'
-                  }
-                  alt=''
-                />
-              </div>
+                  <button className={styles['best-offers__card-button']}>Подробнее</button>
+                </Link>
+              );
+            })()}
 
-              <h1 className={styles['best-offers__card-title']}>
-                Microsoft Office 2016 Professional Plus
-              </h1>
-              <p className={styles['best-offers__card-description']}>
-                Офисный пакет приложений для работы с различными типами документов
-              </p>
-              <p className={styles['best-offers__card-price']}>1 890 ₽</p>
+            {(function () {
+              const product = getProduct('3');
 
-              <button className={styles['best-offers__card-button']}>Подробнее</button>
-            </Link>
+              if (!product) return;
+
+              return (
+                <Link to={'/catalog/' + product.id} className={styles['best-offers__card']}>
+                  <div className={styles['best-offers__card-image']}>
+                    <img src={product.image} alt='' />
+                  </div>
+
+                  <h1 className={styles['best-offers__card-title']}>{product.title}</h1>
+                  <p className={styles['best-offers__card-description']}>
+                    Популярная операционная система, впитавшая в себя самое лучшее
+                  </p>
+                  <p className={styles['best-offers__card-price']}>{product.newPrice}</p>
+
+                  <button className={styles['best-offers__card-button']}>Подробнее</button>
+                </Link>
+              );
+            })()}
+
+            {(function () {
+              const product = getProduct('9');
+
+              if (!product) return;
+
+              return (
+                <Link to={'/catalog/' + product.id} className={styles['best-offers__card']}>
+                  <div className={styles['best-offers__card-image']}>
+                    <img src={product.image} alt='' />
+                  </div>
+
+                  <h1 className={styles['best-offers__card-title']}>
+                    {product.title.replace(' С привязкой', '')}
+                  </h1>
+                  <p className={styles['best-offers__card-description']}>
+                    Офисный пакет приложений для работы с различными типами документов
+                  </p>
+                  <p className={styles['best-offers__card-price']}>{product.newPrice}</p>
+
+                  <button className={styles['best-offers__card-button']}>Подробнее</button>
+                </Link>
+              );
+            })()}
           </div>
 
           <Link to={'/catalog'} className={styles['best-offers__link']}>
