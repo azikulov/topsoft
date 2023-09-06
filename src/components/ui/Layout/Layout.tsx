@@ -49,12 +49,12 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
           </nav>
 
           <div className={styles['header__feedback']}>
-            <Link className={styles['header__feedback-phone']} to='tel:+7 999 999-99-99'>
-              +7 999 999-99-99
+            <Link className={styles['header__feedback-phone']} to='tel:+7 495 798 17 63'>
+              +7 495 798 17 63
             </Link>
 
             <div className={styles['header__feedback-right']}>
-              <Link className={styles['header__feedback-social']} to='https://wa.me/'>
+              <Link className={styles['header__feedback-social']} to='https://wa.me/89195503192'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   width='40'
@@ -77,7 +77,10 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
                   />
                 </svg>
               </Link>
-              <Link className={styles['header__feedback-social']} to='https://t.me/'>
+              <Link
+                className={styles['header__feedback-social']}
+                to='https://tlgg.ru/topsoftsupport'
+              >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   width='40'
@@ -302,15 +305,15 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
               <div className={styles['footer__col']}>
                 <p className={styles['footer__col-title']}>Контакты</p>
 
-                <Link to='tel:+7 999 999-99-99' className={styles['footer__col-link']}>
-                  +7 999 999-99-99
+                <Link to='tel:+7 495 798 17 63' className={styles['footer__col-link']}>
+                  +7 495 798 17 63
                 </Link>
                 <Link to='mailto:admin@topsoft.pro' className={styles['footer__col-link']}>
                   admin@topsoft.pro
                 </Link>
 
                 <div className={styles['footer__col-social']}>
-                  <Link to='/'>
+                  <Link to='https://tlgg.ru/topsoftsupport'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='40'
@@ -336,7 +339,7 @@ export function Layout({ children, hidden }: { children: React.ReactNode; hidden
                     </svg>
                   </Link>
 
-                  <Link to='/'>
+                  <Link to='https://wa.me/89195503192'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       width='40'

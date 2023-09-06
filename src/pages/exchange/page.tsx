@@ -82,7 +82,7 @@ export default function Exchange() {
 
           <div className={styles['address__map']}>
             <iframe
-              src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2723.1261140528136!2d37.40900469475532!3d55.7332634064457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54ee71e5395d9%3A0xfbea3ea829e60c22!2z0JLQvtC10L3QvdGL0Lkg0LrQvtC80LjRgdGB0LDRgNC40LDRgiDQmtGD0L3RhtC10LLRgdC60L7Qs9C-INGA0LDQudC-0L3QsCDQl9Cw0L_QsNC00L3QvtCz0L4g0LDQtNC80LjQvdC40YHRgtGA0LDRgtC40LLQvdC-0LPQviDQvtC60YDRg9Cz0LAg0LPQvtGA0L7QtNCwINCc0L7RgdC60LLRiw!5e0!3m2!1sru!2skz!4v1691490076076!5m2!1sru!2skz'
+              src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2252.0569492596946!2d37.4359369!3d55.6358234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b55289d4fa639f%3A0xcaf392ca401cb288!2z0JHQuNC30L3QtdGBLdC_0LDRgNC6INCg0YPQvNGP0L3RhtC10LLQvg!5e0!3m2!1sru!2skz!4v1694011110481!5m2!1sru!2skz'
               width='600'
               height='450'
               allowFullScreen
