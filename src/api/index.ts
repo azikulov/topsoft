@@ -194,7 +194,22 @@ export async function initiatePayment(
   orderId: string,
   amount: number,
   description: string,
-  email: string
+  email: string,
+  receipt: {
+    Email: string,
+    Items:
+    {
+      Name: string,
+      Price: number,
+      Quantity: number,
+      Amount: number,
+      PaymentMethod: string,
+      PaymentObject: string,
+      Tax: string
+    }[],
+    Total: number,
+    Taxation: string,
+  }
 ) {
   /* 
     orderId: id заказа;
@@ -211,9 +226,10 @@ export async function initiatePayment(
       Amount: amount * 100, // Сумма в копейках
       OrderId: orderId,
       Description: description, // Описание платежа
-      SuccessURL: 'https://topsoft.pro/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
-      // SuccessURL: 'http://localhost:3001/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
+      // SuccessURL: 'https://topsoft.pro/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
+      SuccessURL: 'http://localhost:3001/payment/' + orderId + '/?email=' + email, // URL для успешного платежа
       FailURL: 'https://topsoft.pro/rates', // URL для неуспешного платежа
+      Receipt: receipt
     };
 
     const response = await axios.post(apiUrl, requestData);

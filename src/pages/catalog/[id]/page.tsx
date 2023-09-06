@@ -109,11 +109,29 @@ export default function CatalogID() {
         orderId,
         price,
         currentProduct.title,
-        data.email
+        data.email,
+        {
+          Email: data.email,
+          Items: [
+            {
+              Name: currentProduct.title,
+              Price: price * 100,
+              Quantity: 1,
+              Amount: price * 100,
+              PaymentMethod: 'full_payment',
+              PaymentObject: 'commodity',
+              Tax: 'vat20',
+            },
+          ],
+          Taxation: 'usn_income',
+          Total: price * 100,
+        }
       );
 
       buyLink.href = paymentResponse.PaymentURL;
       buyLink.click();
+
+      setIsBuying(false);
 
       return;
     }
@@ -142,7 +160,28 @@ export default function CatalogID() {
     });
 
     // Инициируем платеж и получаем ссылку для оплаты
-    const paymentResponse = await initiatePayment(orderId, price, currentProduct.title, data.email);
+    const paymentResponse = await initiatePayment(
+      orderId,
+      price,
+      currentProduct.title,
+      data.email,
+      {
+        Email: data.email,
+        Items: [
+          {
+            Name: currentProduct.title,
+            Price: price * 100,
+            Quantity: 1,
+            Amount: price * 100,
+            PaymentMethod: 'full_payment',
+            PaymentObject: 'commodity',
+            Tax: 'vat20',
+          },
+        ],
+        Taxation: 'usn_income',
+        Total: price * 100,
+      }
+    );
 
     buyLink.href = paymentResponse.PaymentURL;
     buyLink.click();
