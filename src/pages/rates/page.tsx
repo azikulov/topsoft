@@ -28,7 +28,10 @@ export default function Rates() {
           <p className={styles['rates__content-title']}>С других сервисов</p>
 
           <div className={styles['rates__content-buttons']}>
-            <button type='button' className={styles['rates__content-button']}>
+            <a
+              href='https://www.trustpilot.com/review/topsoft.store?languages=ru'
+              className={styles['rates__content-button']}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='20'
@@ -66,9 +69,12 @@ export default function Rates() {
               </svg>
 
               <span>Tustpilot</span>
-            </button>
+            </a>
 
-            <button type='button' className={styles['rates__content-button']}>
+            <a
+              href='https://yandex.ru/profile/33447654002?intent=reviews&utm_source=qr&utm_medium=qr_image&utm_campaign=v1'
+              className={styles['rates__content-button']}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='20'
@@ -87,7 +93,7 @@ export default function Rates() {
               </svg>
 
               <span>Яндекс</span>
-            </button>
+            </a>
           </div>
         </div>
 
